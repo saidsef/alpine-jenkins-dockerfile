@@ -22,7 +22,7 @@ node {
     }
     stage("Build and test container") {
       def app = docker.build("jenkins:jenkins-build-${env.BUILD_NUMBER}", ".")
-      app.push("jenkins-build-${env.BUILD_NUMBER}")
+      app.push("saidsef/jenkins:jenkins-build-${env.BUILD_NUMBER}")
     }
   } catch (err) {
     currentBuild.result = "FAILURE"

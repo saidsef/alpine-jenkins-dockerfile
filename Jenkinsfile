@@ -21,9 +21,7 @@ node {
       checkout scm
     }
     stage("Build and test container") {
-      def app = docker.build("jenkins:jenkins-build-${env.BUILD_NUMBER}", ".").inside {
-        sh "./test/test.sh"
-      }
+      def app = docker.build("jenkins:jenkins-build-${env.BUILD_NUMBER}", ".")
       app.push("jenkins-build-${env.BUILD_NUMBER}")
     }
   } catch (err) {

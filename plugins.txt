@@ -1,8 +1,10 @@
 ace-editor
+amazon-ecs
 ant
 antisamy-markup-formatter
 authentication-tokens
 aws-beanstalk-publisher-plugin
+aws-credentials
 aws-java-sdk
 aws-lambda
 blueocean
@@ -28,6 +30,7 @@ branch-api
 build-timeout
 cloudbees-folder
 codedeploy
+config-file-provider
 credentials
 credentials-binding
 display-url-api
@@ -59,6 +62,7 @@ matrix-auth
 matrix-project
 metrics
 momentjs
+nodejs
 nomad
 pam-auth
 pipeline-aws
@@ -78,6 +82,7 @@ pipeline-stage-tags-metadata
 pipeline-stage-view
 plain-credentials
 pubsub-light
+python
 resource-disposer
 scm-api
 script-security

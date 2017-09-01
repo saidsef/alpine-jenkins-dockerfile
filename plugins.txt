@@ -5,7 +5,6 @@ antisamy-markup-formatter
 authentication-tokens
 aws-beanstalk-publisher-plugin
 aws-credentials
-aws-java-sdk
 aws-lambda
 blueocean
 blueocean-autofavorite

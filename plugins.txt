@@ -9,6 +9,7 @@ aws-java-sdk
 aws-lambda
 blueocean
 blueocean-autofavorite
+blueocean-bitbucket-pipeline
 blueocean-commons
 blueocean-config
 blueocean-dashboard
@@ -27,9 +28,12 @@ blueocean-rest-impl
 blueocean-web
 bouncycastle-api
 branch-api
+build-pipeline-plugin
 build-timeout
+cloudbees-bitbucket-branch-source
 cloudbees-folder
 codedeploy
+conditional-buildstep
 config-file-provider
 credentials
 credentials-binding
@@ -51,8 +55,12 @@ github-organization-folder
 github-pr-coverage-status
 gradle
 handlebars
+htmlpublisher
 icon-shim
 jackson2-api
+javadoc
+jira
+jquery
 jquery-detached
 junit
 ldap
@@ -60,11 +68,14 @@ mailer
 mapdb-api
 matrix-auth
 matrix-project
+maven-plugin
+mercurial
 metrics
 momentjs
 nodejs
 nomad
 pam-auth
+parameterized-trigger
 pipeline-aws
 pipeline-build-step
 pipeline-github-lib
@@ -84,6 +95,7 @@ plain-credentials
 pubsub-light
 python
 resource-disposer
+run-condition
 scm-api
 script-security
 sse-gateway

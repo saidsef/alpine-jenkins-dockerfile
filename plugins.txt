@@ -6,6 +6,7 @@ authentication-tokens
 aws-beanstalk-publisher-plugin
 aws-credentials
 aws-lambda
+backup
 blueocean
 blueocean-autofavorite
 blueocean-bitbucket-pipeline
@@ -75,12 +76,15 @@ nodejs
 nomad
 pam-auth
 parameterized-trigger
+pipeline-aggregator-view
 pipeline-aws
 pipeline-build-step
+pipeline-github
 pipeline-github-lib
 pipeline-githubnotify-step
 pipeline-graph-analysis
 pipeline-input-step
+pipeline-maven
 pipeline-milestone-step
 pipeline-model-api
 pipeline-model-declarative-agent
@@ -95,6 +99,7 @@ pubsub-light
 python
 resource-disposer
 run-condition
+scalable-amazon-ecs
 scm-api
 script-security
 sse-gateway
@@ -104,10 +109,13 @@ ssh-slaves
 structs
 subversion
 swarm
+systemloadaverage-monitor
 terraform
+thinBackup
 timestamper
 token-macro
 variant
+webhook-step
 windows-slaves
 workflow-aggregator
 workflow-api

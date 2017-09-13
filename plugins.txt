@@ -1,4 +1,5 @@
 ace-editor
+amazon-ecr
 amazon-ecs
 ant
 antisamy-markup-formatter
@@ -31,6 +32,7 @@ branch-api
 build-pipeline-plugin
 build-timeout
 cloudbees-bitbucket-branch-source
+cloudbees-credentials
 cloudbees-folder
 codedeploy
 conditional-buildstep
@@ -41,6 +43,9 @@ display-url-api
 docker-commons
 docker-workflow
 durable-task
+ec2
+ec2-deployment-dashboard
+ec2-fleet
 email-ext
 external-monitor-job
 favorite
@@ -72,6 +77,7 @@ maven-plugin
 mercurial
 metrics
 momentjs
+node-iterator-api
 nodejs
 nomad
 pam-auth

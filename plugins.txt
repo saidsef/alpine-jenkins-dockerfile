@@ -39,7 +39,6 @@ conditional-buildstep
 config-file-provider
 credentials
 credentials-binding
-display-url-api
 docker-commons
 docker-workflow
 durable-task

@@ -11,3 +11,4 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 ### Links
 
 - Job DSL API https://jenkinsci.github.io/job-dsl-plugin/
+- Example Jobs https://github.com/jenkinsci/pipeline-examples

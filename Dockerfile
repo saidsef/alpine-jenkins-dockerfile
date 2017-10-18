@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.85-alpine
+FROM jenkins/jenkins:alpine
 
 # Copy plugins list to container
 COPY plugins.txt /var/jenkins_home/plugins.txt

@@ -75,6 +75,7 @@ jira
 jquery
 jquery-detached
 junit
+kubernetes-ci
 ldap
 log-parser
 mailer
@@ -107,6 +108,8 @@ pipeline-model-api
 pipeline-model-declarative-agent
 pipeline-model-definition
 pipeline-model-extensions
+pipeline-multibranch-defaults
+pipeline-npm
 pipeline-rest-api
 pipeline-stage-step
 pipeline-stage-tags-metadata

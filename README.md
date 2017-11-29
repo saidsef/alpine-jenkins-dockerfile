@@ -1,7 +1,7 @@
 # Jenkins Docker Container
 
 ## Plugin
- - [Jenkins Plugins](plugins.txt)
+ - [Jenkins Plugins List](plugins.txt)
 
 ### Build and deploy locally
 ```bash
@@ -15,7 +15,7 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 $ docker pull saidsef/alpine-jenkins-dockerfile-demo:dev
 $ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile-demo:dev
 ```
-Once Jenkins is up and running go to http://<host>:8080
+Once Jenkins is up and running go to http://host-name:8080
 
 ### Links
 

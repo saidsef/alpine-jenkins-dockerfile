@@ -1,4 +1,7 @@
 FROM jenkins/jenkins:alpine
+MAINTAINER Said Sef <saidsef@gmail.com>
+
+ENV JAVA_OPTS --ajp13Port=-1
 
 # Copy plugins, groovy and css to container
 COPY files/plugins.txt /var/jenkins_home/plugins.txt

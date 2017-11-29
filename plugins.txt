@@ -1,4 +1,5 @@
 ace-editor
+all-changes
 amazon-ecr
 amazon-ecs
 ant
@@ -29,8 +30,10 @@ blueocean-rest-impl
 blueocean-web
 bouncycastle-api
 branch-api
+build-monitor-plugin
 build-pipeline-plugin
 build-timeout
+build-with-parameters
 cloudbees-bitbucket-branch-source
 cloudbees-credentials
 cloudbees-folder
@@ -39,9 +42,12 @@ conditional-buildstep
 config-file-provider
 credentials
 credentials-binding
+cucumber-reports
+dashboard-view
 display-url-api
 docker-commons
 docker-workflow
+downstream-buildview
 durable-task
 ec2
 ec2-deployment-dashboard
@@ -56,6 +62,7 @@ git-server
 github
 github-api
 github-branch-source
+github-issues
 github-organization-folder
 github-pr-coverage-status
 gradle
@@ -69,6 +76,7 @@ jquery
 jquery-detached
 junit
 ldap
+log-parser
 mailer
 mapdb-api
 matrix-auth
@@ -81,7 +89,10 @@ node-iterator-api
 nodejs
 nomad
 pam-auth
+Parameterized-Remote-Trigger
 parameterized-trigger
+performance
+persistent-parameter
 pipeline-aggregator-view
 pipeline-aws
 pipeline-build-step
@@ -121,6 +132,7 @@ thinBackup
 timestamper
 token-macro
 variant
+vsphere-cloud
 webhook-step
 windows-slaves
 workflow-aggregator

@@ -16,6 +16,22 @@ instance.setSecurityRealm(hudsonRealm)
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
+
+def matrix = new GlobalMatrixAuthorizationStrategy()
+matrix.add(Jenkins.ADMINISTER, "admin")
+instance.setAuthorizationStrategy(strategy)
+
+instance.setSlaveAgentPort(9099)
+
 instance.save()
 
-Jenkins.instance.doReload()
+// Updated Theme
+def ipAddress = InetAddress.localHost.hostAddress
+def r = new Random()
+def colours = ['blue','green','amber']
+
+for (pd in PageDecorator.all()) {
+  if (pd instanceof org.codefirst.SimpleThemeDecorator) {
+    pd.cssUrl = 'http://' + ipAddress + ':8080/material-' + colours.get(r.nextInt(colours.size())) + '.css'
+  }
+}

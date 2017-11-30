@@ -68,12 +68,14 @@ github-issues
 github-organization-folder
 github-pr-coverage-status
 gradle
+groovy-postbuild
 handlebars
 htmlpublisher
 icon-shim
 jackson2-api
 javadoc
 jira
+jobConfigHistory
 jquery
 jquery-detached
 junit

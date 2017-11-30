@@ -29,11 +29,12 @@ instance.save()
 // Updated Theme
 def ipAddress = InetAddress.localHost.hostAddress
 def r = new Random()
-def colours = ['blue','green','amber']
+def colours = ['blue','green','amber','orange']
 
 for (pd in PageDecorator.all()) {
   if (pd instanceof org.codefirst.SimpleThemeDecorator) {
-    println "--> updating jenkins theme"
-    pd.cssUrl = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colours.get(r.nextInt(colours.size()))}.css"
+    def colour = colours.get(r.nextInt(colours.size()))
+    println "--> updating jenkins theme - ${colour}"
+    pd.cssUrl = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
   }
 }

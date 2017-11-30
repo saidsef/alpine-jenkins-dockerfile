@@ -4,6 +4,7 @@
 
 import jenkins.model.*
 import hudson.security.*
+import hudson.extension.*
 
 def instance = Jenkins.getInstance()
 

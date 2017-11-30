@@ -4,6 +4,7 @@
 
 import jenkins.model.*
 import hudson.model.*
+import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
 import hudson.extension.*
 

@@ -3,6 +3,7 @@
 // https://go.cloudbees.com/docs/cloudbees-documentation/admin-instance/setup/
 
 import jenkins.model.*
+import hudson.model.*
 import hudson.security.*
 import hudson.extension.*
 

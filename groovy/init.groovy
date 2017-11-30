@@ -32,6 +32,7 @@ def colours = ['blue','green','amber']
 
 for (pd in PageDecorator.all()) {
   if (pd instanceof org.codefirst.SimpleThemeDecorator) {
-    pd.cssUrl = 'http://' + ipAddress + ':8080/material-' + colours.get(r.nextInt(colours.size())) + '.css'
+    println "--> updating jenkins theme"
+    pd.cssUrl = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colours.get(r.nextInt(colours.size()))}.css"
   }
 }

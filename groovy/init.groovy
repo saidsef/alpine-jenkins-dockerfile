@@ -4,7 +4,7 @@
 
 import jenkins.model.*
 import hudson.model.*
-import hudson.security.*
+import hudson.security.csrf.DefaultCrumbIssuer
 import hudson.extension.*
 
 def instance = Jenkins.getInstance()
@@ -23,6 +23,7 @@ def matrix = new GlobalMatrixAuthorizationStrategy()
 matrix.add(Jenkins.ADMINISTER, "admin")
 instance.setAuthorizationStrategy(strategy)
 
+instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.setSlaveAgentPort(9099)
 
 instance.save()

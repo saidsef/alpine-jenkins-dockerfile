@@ -1,7 +1,7 @@
 # Jenkins Docker Container
 
 ## Plugin
- - [Jenkins Plugins List](plugins.txt)
+ - [Jenkins Plugins List](files/plugins.txt)
 
 ### Build and deploy locally
 ```bash

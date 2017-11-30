@@ -55,6 +55,10 @@ ec2
 ec2-deployment-dashboard
 ec2-fleet
 email-ext
+envfile
+envinject
+envinject-api
+environment-script
 external-monitor-job
 favorite
 ghprb
@@ -90,6 +94,7 @@ maven-plugin
 mercurial
 metrics
 momentjs
+nexus-artifact-uploader
 node-iterator-api
 nodejs
 nomad
@@ -97,6 +102,9 @@ pam-auth
 Parameterized-Remote-Trigger
 parameterized-trigger
 performance
+performance-signature-ui
+performance-signature-viewer
+perfpublisher
 persistent-parameter
 pipeline-aggregator-view
 pipeline-aws
@@ -127,6 +135,7 @@ scalable-amazon-ecs
 scm-api
 script-security
 simple-theme-plugin
+slack
 sse-gateway
 ssh-agent
 ssh-credentials

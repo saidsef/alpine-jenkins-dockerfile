@@ -32,7 +32,7 @@ instance.save()
 // Updated Theme
 def ipAddress = InetAddress.localHost.hostAddress
 def r = new Random()
-def colours = ['blue','green','amber','orange']
+def colours = ['blue','green','amber','orange','red','yellow']
 
 for (pd in PageDecorator.all()) {
   if (pd instanceof org.codefirst.SimpleThemeDecorator) {

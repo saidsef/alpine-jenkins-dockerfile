@@ -85,6 +85,7 @@ jquery-detached
 junit
 kubernetes-ci
 ldap
+libvirt-slave
 log-parser
 mailer
 mapdb-api
@@ -105,6 +106,7 @@ performance
 performance-signature-ui
 performance-signature-viewer
 perfpublisher
+permissive-script-security
 persistent-parameter
 pipeline-aggregator-view
 pipeline-aws

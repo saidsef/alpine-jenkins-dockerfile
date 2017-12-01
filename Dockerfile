@@ -1,6 +1,8 @@
 FROM jenkins/jenkins:alpine
 MAINTAINER Said Sef <saidsef@gmail.com>
 
+ENV JENKINS_OPTS ${JENKINS_OPTS:-''} -Dpermissive-script-security.enabled=true
+
 # Copy plugins, groovy and css to container
 COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/init.groovy /var/jenkins_home/init.groovy.d/

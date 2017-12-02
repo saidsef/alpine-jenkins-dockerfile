@@ -25,8 +25,6 @@ matrix.add(Jenkins.ADMINISTER, "admin")
 instance.setAuthorizationStrategy(strategy)
 
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
-instance.setSlaveAgentPort(9099)
-
 instance.save()
 
 // Updated Theme

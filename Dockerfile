@@ -18,7 +18,7 @@ COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:8080/login?from=login' || exit 1
 
 # Build information
-RUN echo $BUILD_ID > build_id.txt
+RUN echo $BUILD_ID > /tmp/build_id.txt
 
 # Install plugin
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt

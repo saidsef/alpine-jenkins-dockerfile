@@ -15,14 +15,17 @@ println "--> creating local user 'admin'"
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 hudsonRealm.createAccount('admin','admin')
 instance.setSecurityRealm(hudsonRealm)
+instance.save()
 
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
+instance.save()
 
 def matrix = new GlobalMatrixAuthorizationStrategy()
 matrix.add(Jenkins.ADMINISTER, "admin")
 instance.setAuthorizationStrategy(strategy)
+instance.save()
 
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()

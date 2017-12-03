@@ -24,7 +24,27 @@ instance.save()
 
 def matrix = new GlobalMatrixAuthorizationStrategy()
 matrix.add(Jenkins.ADMINISTER, "admin")
-instance.setAuthorizationStrategy(strategy)
+matrix.add(Jenkins.READ,'authenticated')
+matrix.add(Item.READ,'authenticated')
+matrix.add(Item.DISCOVER,'authenticated')
+matrix.add(Item.CANCEL,'authenticated')
+matrix.add(Item.CONFIGURE,'jenkins-job-builder')
+matrix.add(Item.READ,'jenkins-job-builder')
+matrix.add(Item.READ,'anonymous')
+matrix.add(Item.DISCOVER,'jenkins-job-builder')
+matrix.add(Item.CREATE,'jenkins-job-builder')
+matrix.add(Item.DELETE,'jenkins-job-builder')
+matrix.add(Jenkins.ADMINISTER, "swarm-slave")
+matrix.add(Jenkins.ADMINISTER, "jenkins-job-builder")
+// declare who can launch a slave (using awarm client) and configure the slaves
+// add slave launch permissions to svc
+// info found from http://javadoc.jenkins-ci.org/hudson/security/class-use/Permission.html#jenkins.slaves
+matrix.add(Computer.BUILD,'swarm-slave')
+matrix.add(Computer.CONFIGURE,'swarm-slave')
+matrix.add(Computer.CONNECT,'swarm-slave')
+matrix.add(Computer.CREATE,'swarm-slave')
+matrix.add(Computer.DISCONNECT,'swarm-slave')
+instance.setAuthorizationStrategy(matrix)
 instance.save()
 
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))

@@ -43,6 +43,7 @@ claim
 cloudbees-bitbucket-branch-source
 cloudbees-credentials
 cloudbees-folder
+clover
 codedeploy
 conditional-buildstep
 config-file-provider
@@ -84,6 +85,7 @@ gradle
 groovy-postbuild
 handlebars
 htmlpublisher
+hudson-pview-plugin
 icon-shim
 jackson2-api
 javadoc
@@ -144,6 +146,7 @@ plain-credentials
 pubsub-light
 python
 resource-disposer
+role-strategy
 run-condition
 saml
 scalable-amazon-ecs

@@ -106,7 +106,6 @@ maven-plugin
 mercurial
 metrics
 momentjs
-multi-branch-project-plugin
 multiple-scms
 nexus-artifact-uploader
 node-iterator-api

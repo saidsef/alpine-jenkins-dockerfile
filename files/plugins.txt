@@ -66,7 +66,6 @@ email-ext
 envfile
 envinject
 envinject-api
-environment-script
 export-params
 external-monitor-job
 favorite
@@ -107,6 +106,7 @@ maven-plugin
 mercurial
 metrics
 momentjs
+multi-branch-project-plugin
 multiple-scms
 nexus-artifact-uploader
 node-iterator-api

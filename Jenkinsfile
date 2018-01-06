@@ -13,6 +13,19 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import java.net.URL
 
+pipeline {
+  agent {
+    label ""
+  }
+  stages {
+    stage("Checkout") {
+      steps {
+        checkout scm
+      }
+    }
+  }
+}
+
 node {
   try {
     currentBuild.result = "SUCCESS"

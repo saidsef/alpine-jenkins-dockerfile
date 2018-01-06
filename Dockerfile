@@ -17,9 +17,13 @@ COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 # health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:8080/login?from=login' || exit 1
 
+USER root
+
 # Build information
 RUN apk add --update graphviz
 RUN echo $BUILD_ID > /tmp/build_id.txt
+
+USER jenkins
 
 # Install plugin
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt

@@ -10,6 +10,7 @@ authentication-tokens
 aws-batch
 aws-beanstalk-publisher-plugin
 aws-codecommit-trigger
+aws-codepipeline
 aws-credentials
 aws-lambda
 backup

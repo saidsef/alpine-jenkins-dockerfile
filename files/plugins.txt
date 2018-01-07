@@ -9,6 +9,7 @@ antisamy-markup-formatter
 authentication-tokens
 aws-batch
 aws-beanstalk-publisher-plugin
+aws-cloudwatch-logs-publisher
 aws-codecommit-trigger
 aws-codepipeline
 aws-credentials
@@ -40,7 +41,6 @@ build-pipeline-plugin
 build-time-blame
 build-timeout
 build-with-parameters
-claim
 cloudbees-bitbucket-branch-source
 cloudbees-credentials
 cloudbees-folder

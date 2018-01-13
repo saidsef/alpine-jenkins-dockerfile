@@ -22,7 +22,7 @@ function push {
 }
 
 function main {
-  if [ -z "$1" ]; then
+  if [ -z "${BUILD_ID}" ]; then
     usage
   else
     build

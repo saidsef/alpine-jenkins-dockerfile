@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 BUILD_ID=$1
 
@@ -27,7 +28,7 @@ function run {
 }
 
 function main {
-  if [ -z "$1" ]; then
+  if [ -z "${BUILD_ID}" ]; then
     usage
   else
     run

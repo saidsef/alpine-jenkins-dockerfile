@@ -28,4 +28,4 @@ HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:8080/
 
 VOLUME ["/var/jenkins_home/workspace", "/var/jenkins_home/logs"]
 VOLUME ["/var/jenkins_home/jobs", "/var/jenkins_home/jenkins-jobs"]
-VOLUME ["/var/jenkins_home/secrets", "/var/jenkins_home/cache"]
+VOLUME ["/var/jenkins_home/cache"]

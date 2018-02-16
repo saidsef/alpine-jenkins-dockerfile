@@ -12,7 +12,7 @@ ENV JENKINS_OPTS -Dpermissive-script-security.enabled=true ${JENKINS_OPTS:-''}
 
 # Install graphviz and build information
 USER root
-RUN apk add --update graphviz && \
+RUN apk --update add --no-cache graphviz && \
     apk del build-base linux-headers pcre-dev openssl-dev && \
     rm -rf /var/cache/apk/*
 

@@ -24,7 +24,7 @@ function run {
   -v /mnt/jenkins/cache:/var/jenkins_home/cache \
   -v /mnt/jenkins/logs:/var/jenkins_home/jenkins-jobs \
   -v /mnt/jenkins/secrets:/var/jenkins_home/secrets \
-  saidsef/alpine-jenkins-dockerfile-demo:${BUILD_ID}
+  saidsef/alpine-jenkins-dockerfile:${BUILD_ID}
 }
 
 function main {

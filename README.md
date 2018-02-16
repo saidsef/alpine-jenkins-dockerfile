@@ -12,8 +12,8 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 
 ### Deploy from remote repo
 ```bash
-$ docker pull saidsef/alpine-jenkins-dockerfile-demo:dev
-$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile-demo:dev
+$ docker pull saidsef/alpine-jenkins-dockerfile:dev
+$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:dev
 ```
 Once Jenkins is up and running go to http://host-name:8080
 

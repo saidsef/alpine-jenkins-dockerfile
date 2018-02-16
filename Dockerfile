@@ -22,8 +22,8 @@ COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 
 # Install plugins
-RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt && \
-    echo ${BUILD_ID} > /tmp/build_id.txt
+RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt
+RUN echo ${BUILD_ID} > /tmp/build_id.txt
 
 # Health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:8080/login?from=login' || exit 1

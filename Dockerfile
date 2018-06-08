@@ -21,6 +21,9 @@ USER jenkins
 COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 
+# Disable plugin banner on startup
+RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt
 RUN echo ${BUILD_ID} > /tmp/build_id.txt

@@ -11,11 +11,27 @@ $ docker run -d -p 8080:8080 jenkins
 Once Jenkins is up and running go to http://127.0.0.1:8080
 
 ### Deploy from remote repo
+
+#### Locally
 ```bash
 $ docker pull saidsef/alpine-jenkins-dockerfile:dev
 $ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:dev
 ```
 Once Jenkins is up and running go to http://host-name:8080
+
+#### Kubernetes
+
+Create `namespace` called `cicd` via `kubectl create namespace cicd`, and then deploy templste:
+
+```bash
+kubectl apply -f k8s-jenkins-cicd.yml
+```
+
+To login:
+```bash
+kubectl logs pod/<pod-name> -n cicd
+```
+Default admin password will be print in the log output!
 
 ### Links
 

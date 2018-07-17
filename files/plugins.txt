@@ -93,6 +93,10 @@ jobConfigHistory
 jquery
 jquery-detached
 junit
+kubernetes-ci
+kubernetes-credentials
+kubernetes-credentials-provider
+kubernetes
 ldap
 libvirt-slave
 log-parser

@@ -1,0 +1,112 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: jenkins-storage
+  namespace: cicd
+  labels:
+    type: local
+spec:
+  storageClassName: generic
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/jenkins
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-storage
+  namespace: cicd
+  labels:
+    name: jenkins
+    app: jenkins
+spec:
+  storageClassName: generic
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+  namespace: cicd
+  labels:
+    name: jenkins
+    app: jenkins
+spec:
+  type: NodePort
+  selector:
+    app: jenkins
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: cicd
+  labels:
+    name: jenkins
+    app: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        name: app
+        app: jenkins
+    spec:
+      containers:
+        - image: saidsef/alpine-jenkins-dockerfile:dev
+          name: jenkins
+          imagePullPolicy: Always
+          ports:
+            - protocol: TCP
+              containerPort: 8080
+              name: jenkins80
+            - protocol: TCP
+              containerPort: 5000
+              name: jenkins5k
+          volumeMounts:
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/logs
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/jobs
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/cache
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/jenkins-jobs
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/builds
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home/secrets
+      volumes:
+        - name: jenkins-storage
+          persistentVolumeClaim:
+            claimName: jenkins-storage
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins
+  namespace: cicd
+spec:
+  rules:
+  - host: jenkins.saidsef.co.uk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins
+          servicePort: 8080

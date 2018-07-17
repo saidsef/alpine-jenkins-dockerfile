@@ -1,8 +1,8 @@
 FROM jenkins/jenkins:alpine
-MAINTAINER Said Sef <said@saidsef.co.uk> (http://saidsef.co.uk/)
+MAINTAINER Said Sef <said@saidsef.co.uk> (saidsef.co.uk/)
 
 # Set labels
-LABEL version="2.5"
+LABEL version="2.9"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
 ARG BUILD_ID=""
@@ -17,7 +17,7 @@ RUN apk --update add --no-cache graphviz && \
     rm -rf /var/cache/apk/*
 
 # Copy plugins, groovy and css to container
-USER jenkins
+#USER jenkins
 COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 

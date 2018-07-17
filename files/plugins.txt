@@ -47,7 +47,6 @@ cloudbees-folder
 clover
 codedeploy
 conditional-buildstep
-config-file-provider
 convert-to-pipeline
 credentials
 credentials-binding

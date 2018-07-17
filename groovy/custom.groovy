@@ -63,5 +63,5 @@ for (pd in PageDecorator.all()) {
 }
 
 println "#########################################################"
-println "--> created local user 'admin' with password: ${passowrd}"
+println "--> created local user 'admin' with password: ${password}"
 println "#########################################################"

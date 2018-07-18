@@ -81,16 +81,22 @@ spec:
           volumeMounts:
             - name: jenkins-storage
               mountPath: /var/jenkins_home/logs
+              subPath: logs
             - name: jenkins-storage
               mountPath: /var/jenkins_home/jobs
+              subPath: jobs
             - name: jenkins-storage
               mountPath: /var/jenkins_home/cache
+              subPath: cache
             - name: jenkins-storage
               mountPath: /var/jenkins_home/jenkins-jobs
+              subPath: jenkins-jobs
             - name: jenkins-storage
               mountPath: /var/jenkins_home/builds
+              subPath: builds
             - name: jenkins-storage
               mountPath: /var/jenkins_home/secrets
+              subPath: secrets
       volumes:
         - name: jenkins-storage
           persistentVolumeClaim:

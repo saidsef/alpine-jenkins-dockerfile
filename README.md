@@ -29,9 +29,15 @@ kubectl apply -f k8s-jenkins-cicd.yml
 
 To login:
 ```bash
-kubectl logs pod/<pod-name> -n cicd
+kubectl logs pod/<pod-name> -n cicd -f | grep 'created local'
 ```
-Default admin password will be print in the log output!
+Default admin password will be print in the log output - be patient, depending on the available resources startup might take a while!
+
+Once the service has been successfully deployed, use the following command to access login screen:
+
+```bash
+kubectl port-forward <pod-name> 8080:8080
+```
 
 ### Links
 

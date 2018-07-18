@@ -9,11 +9,10 @@ import hudson.security.csrf.DefaultCrumbIssuer
 import hudson.extension.*
 
 def instance = Jenkins.getInstance()
-
-println "--> creating local user 'admin'"
+def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-hudsonRealm.createAccount('admin','admin')
+hudsonRealm.createAccount('admin', password)
 instance.setSecurityRealm(hudsonRealm)
 instance.save()
 
@@ -62,3 +61,7 @@ for (pd in PageDecorator.all()) {
     pd.cssUrl = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
   }
 }
+
+println "#########################################################"
+println "--> created local user 'admin' with password: ${password}"
+println "#########################################################"

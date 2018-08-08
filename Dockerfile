@@ -1,14 +1,14 @@
 FROM jenkins/jenkins:alpine
-MAINTAINER Said Sef <said@saidsef.co.uk> (saidsef.co.uk/)
 
 # Set labels
-LABEL version="2.9"
+LABEL version="2.10"
+LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
 ARG BUILD_ID=""
 
 ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV JENKINS_OPTS -Dpermissive-script-security.enabled=true ${JENKINS_OPTS:-''}
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true"
 
 # Install graphviz and build information
 USER root

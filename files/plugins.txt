@@ -116,7 +116,6 @@ kubernetes-credentials-provider
 ldap
 libvirt-slave
 log-parser
-logstash
 mailer
 mapdb-api
 matrix-auth

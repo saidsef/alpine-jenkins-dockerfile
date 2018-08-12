@@ -68,6 +68,7 @@ cucumber-testresult-plugin
 dashboard-view
 display-url-api
 docker-commons
+docker-swarm
 docker-workflow
 downstream-buildview
 durable-task
@@ -78,6 +79,7 @@ email-ext
 envfile
 envinject
 envinject-api
+environment-dashboard
 export-params
 external-monitor-job
 favorite
@@ -92,6 +94,7 @@ github-branch-source
 github-issues
 github-organization-folder
 github-pr-coverage-status
+golang
 gradle
 groovy-postbuild
 handlebars
@@ -115,6 +118,7 @@ kubernetes-credentials
 kubernetes-credentials-provider
 ldap
 libvirt-slave
+livescreenshot
 log-parser
 mailer
 mapdb-api
@@ -123,6 +127,7 @@ matrix-project
 maven-plugin
 mercurial
 metrics
+mission-control-view
 momentjs
 multiple-scms
 nexus-artifact-uploader
@@ -202,3 +207,4 @@ workflow-step-api
 workflow-support
 ws-cleanup
 xfpanel
+xvfb

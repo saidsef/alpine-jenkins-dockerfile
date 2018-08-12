@@ -85,6 +85,7 @@ external-monitor-job
 favorite
 ghprb
 git
+git-changelog
 git-client
 git-server
 git-tag-message

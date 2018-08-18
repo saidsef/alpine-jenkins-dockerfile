@@ -20,6 +20,7 @@ aws-lambda
 backup
 badge
 bitbucket
+bitbucket-approve
 bitbucket-build-status-notifier
 blueocean
 blueocean-autofavorite
@@ -95,11 +96,14 @@ github-branch-source
 github-issues
 github-organization-folder
 github-pr-coverage-status
+gitlab-oauth
 golang
+google-login
 gradle
 groovy-postbuild
 handlebars
 handy-uri-templates-2-api
+html5-notifier-plugin
 htmlpublisher
 hudson-pview-plugin
 icon-shim

@@ -43,12 +43,13 @@ def file = new File("./colour")
 def r = new Random()
 
 for (pd in PageDecorator.all()) {
+  def colour = (file.exists()) ? file.getText() : colours.get(r.nextInt(colours.size()))
+  file.write colour
   if (pd instanceof org.codefirst.SimpleThemeDecorator) {
-    def colour = (file.exists()) ? file.getText() : colours.get(r.nextInt(colours.size()))
-    file.write colour
     println "--> updating jenkins theme - ${colour}"
-    pd.cssUrl = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
+    pd.setCssUrl("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")
   }
+  pd.save()
 }
 
 println "#########################################################"

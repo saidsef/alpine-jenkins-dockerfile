@@ -124,6 +124,7 @@ kubernetes-credentials-provider
 ldap
 libvirt-slave
 livescreenshot
+lockable-resources
 log-parser
 mailer
 mapdb-api

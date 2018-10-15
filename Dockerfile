@@ -12,9 +12,10 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-securi
 
 # Install graphviz and build information
 USER root
-RUN apk --update add --no-cache graphviz && \
+RUN apk --update add graphviz && \
     apk del build-base linux-headers pcre-dev openssl-dev && \
-    rm -rf /var/cache/apk/*
+    rm -rfv /var/cache/apk/* && \
+    rm -rfv /tmp/*
 
 # Copy plugins, groovy and css to container
 #USER jenkins

@@ -60,6 +60,8 @@ codedeploy
 command-launcher
 conditional-buildstep
 config-file-provider
+configuration-as-code
+configuration-as-code-support
 convert-to-pipeline
 credentials
 credentials-binding

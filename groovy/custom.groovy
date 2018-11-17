@@ -49,7 +49,6 @@ for (pd in PageDecorator.all()) {
     println "--> updating jenkins theme - ${colour}"
     pd.setCssUrl("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")
   }
-  pd.save()
   pd.load()
 }
 

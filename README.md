@@ -21,7 +21,7 @@ Once Jenkins is up and running go to http://host-name:8080
 
 #### Kubernetes
 
-Create `namespace` called `cicd` via `kubectl create namespace cicd`, and then deploy templste:
+Create `namespace` called `cicd` via `kubectl create namespace cicd`, and then deploy template:
 
 ```bash
 kubectl apply -f k8s-jenkins-cicd.yml

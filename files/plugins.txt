@@ -13,7 +13,7 @@ aws-batch
 aws-beanstalk-publisher-plugin
 aws-cloudwatch-logs-publisher
 aws-codecommit-trigger
-aws-codepipeline
+aws-codepipeline:0.38
 aws-credentials
 aws-java-sdk
 aws-lambda
@@ -60,6 +60,8 @@ codedeploy
 command-launcher
 conditional-buildstep
 config-file-provider
+configuration-as-code:latest
+configuration-as-code-support:latest
 convert-to-pipeline
 credentials
 credentials-binding
@@ -117,10 +119,6 @@ jquery
 jquery-detached
 jsch
 junit
-kubernetes
-kubernetes-ci
-kubernetes-credentials
-kubernetes-credentials-provider
 ldap
 libvirt-slave
 livescreenshot

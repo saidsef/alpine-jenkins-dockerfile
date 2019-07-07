@@ -1,55 +1,6 @@
 ---
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: jenkins-storage
-  namespace: cicd
-  labels:
-    type: local
-spec:
-  storageClassName: generic
-  capacity:
-    storage: 3Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/jenkins
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jenkins-storage
-  namespace: cicd
-  labels:
-    name: jenkins
-    app: jenkins
-spec:
-  storageClassName: generic
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 3Gi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkins
-  namespace: cicd
-  labels:
-    name: jenkins
-    app: jenkins
-spec:
-  type: NodePort
-  selector:
-    app: jenkins
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
----
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: jenkins
   namespace: cicd
@@ -57,6 +8,7 @@ metadata:
     name: jenkins
     app: jenkins
 spec:
+  serviceName: jenkins
   replicas: 1
   selector:
     matchLabels:
@@ -99,20 +51,4 @@ spec:
               subPath: secrets
       volumes:
         - name: jenkins-storage
-          persistentVolumeClaim:
-            claimName: jenkins-storage
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: jenkins
-  namespace: cicd
-spec:
-  rules:
-  - host: jenkins.saidsef.co.uk
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: jenkins
-          servicePort: 8080
+          emptyDir: {}

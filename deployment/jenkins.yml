@@ -20,16 +20,16 @@ spec:
         app: jenkins
     spec:
       containers:
-        - image: saidsef/alpine-jenkins-dockerfile:dev
+        - image: saidsef/alpine-jenkins-dockerfile:latest
           name: jenkins
           imagePullPolicy: Always
           ports:
             - protocol: TCP
               containerPort: 8080
-              name: jenkins80
+              name: jenkins
             - protocol: TCP
               containerPort: 5000
-              name: jenkins5k
+              name: agent
           volumeMounts:
             - name: jenkins-storage
               mountPath: /var/jenkins_home/logs

@@ -12,11 +12,11 @@ spec:
   selector:
     app: jenkins
   ports:
-    - port: 80
+    - name: jenkins
+      port: 80
       protocol: TCP
       targetPort: 8080
-      name: jenkins
-    - port: 5000
+    - name: agent
+      port: 5000
       protocol: TCP
       targetPort: 5000
-      name: agent

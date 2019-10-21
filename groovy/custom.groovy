@@ -10,6 +10,20 @@ import hudson.extension.*
 
 def instance = Jenkins.getInstance()
 def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
+def host     = System.getenv("JENKINS_HOSTNAME") ?: "127.0.0.1".toString()
+def port     = System.getenv("JENKINS_PORT") ?: "8080".toString()
+
+// email parameters
+def jenkinsParameters = [
+  email:  "Mr Jenkins <jenkins@${host}>",
+  url:    "https://${host}:${port}/"
+]
+
+// set Jenkins Admin URL and email
+def jenkinsLocationConfiguration = JenkinsLocationConfiguration.get()
+jenkinsLocationConfiguration.setUrl(jenkinsParameters.url)
+jenkinsLocationConfiguration.setAdminAddress(jenkinsParameters.email)
+jenkinsLocationConfiguration.save()
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 hudsonRealm.createAccount('admin', password)

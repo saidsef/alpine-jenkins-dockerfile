@@ -1,6 +1,5 @@
 servuce:
   - docker
-language: ruby
 git:
   depth: 10
   submodules: true

@@ -10,7 +10,6 @@ antisamy-markup-formatter
 apache-httpcomponents-client-4-api
 authentication-tokens
 aws-batch
-aws-cloudwatch-logs-publisher
 aws-codecommit-trigger
 aws-codepipeline:0.38
 aws-credentials
@@ -44,7 +43,6 @@ blueocean-web
 bouncycastle-api
 branch-api
 build-monitor-plugin
-build-pipeline-plugin
 build-time-blame
 build-timeout
 build-token-root
@@ -58,8 +56,8 @@ codedeploy
 command-launcher
 conditional-buildstep
 config-file-provider
-configuration-as-code:latest
 configuration-as-code-support:latest
+configuration-as-code:latest
 convert-to-pipeline
 credentials
 credentials-binding
@@ -67,10 +65,12 @@ crowd2
 cucumber-reports
 cucumber-testresult-plugin
 dashboard-view
+delivery-pipeline-plugin
 display-url-api
 docker-commons
 docker-swarm
 docker-workflow
+downstream-build-cache
 downstream-buildview
 durable-task
 ec2
@@ -78,16 +78,14 @@ ec2-deployment-dashboard
 ec2-fleet
 email-ext
 envfile
-envinject
-envinject-api
 environment-dashboard
 export-params
 external-monitor-job
 favorite
-ghprb
 git
 git-changelog
 git-client
+git-parameter
 git-server
 git-tag-message
 github
@@ -171,6 +169,7 @@ saml
 scalable-amazon-ecs
 scm-api
 script-security
+semantic-versioning-plugin
 simple-theme-plugin
 slack
 sse-gateway
@@ -206,3 +205,4 @@ workflow-support
 ws-cleanup
 xfpanel
 xvfb
+yet-another-build-visualizer

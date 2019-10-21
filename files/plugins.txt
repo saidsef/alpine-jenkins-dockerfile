@@ -10,7 +10,6 @@ antisamy-markup-formatter
 apache-httpcomponents-client-4-api
 authentication-tokens
 aws-batch
-aws-beanstalk-publisher-plugin
 aws-cloudwatch-logs-publisher
 aws-codecommit-trigger
 aws-codepipeline:0.38
@@ -20,7 +19,6 @@ aws-lambda
 backup
 badge
 bitbucket
-bitbucket-approve
 bitbucket-build-status-notifier
 blueocean
 blueocean-autofavorite
@@ -97,8 +95,6 @@ github-api
 github-branch-source
 github-issues
 github-organization-folder
-github-pr-coverage-status
-gitlab-oauth
 golang
 google-login
 gradle
@@ -137,7 +133,6 @@ multiple-scms
 nexus-artifact-uploader
 node-iterator-api
 nodejs
-nomad
 pam-auth
 parameterized-trigger
 performance
@@ -178,7 +173,6 @@ scm-api
 script-security
 simple-theme-plugin
 slack
-snsnotify
 sse-gateway
 ssh-agent
 ssh-credentials

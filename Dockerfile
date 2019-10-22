@@ -29,8 +29,7 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt
 RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt && \
     mkdir -p /var/jenkins_home/{logs,cache,jenkins-jobs,jobs,secrets} && \
-    chmod 755 -R /var/jenkins_home && \
-    chown jenkins:jenkins -R /var/jenkins_home
+    chown -R 1000:1000 /var/jenkins_home
 
 USER jenkins
 

@@ -1,13 +1,12 @@
 servuce:
   - docker
-language: ruby
 git:
   depth: 10
   submodules: true
 before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
-  - docker build -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
+  - docker build --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
   - docker push saidsef/alpine-jenkins-dockerfile
 notifications:
   email: true

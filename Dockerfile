@@ -27,11 +27,10 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt
-RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt && \
-    mkdir -p /var/jenkins_home/{logs,cache,jenkins-jobs,jobs,secrets} && \
-    chown -R 1000:1000 /var/jenkins_home
+RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt
 
-USER jenkins
+# first fix dir/file permission issues
+#USER jenkins
 
 # Health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:${PORT}/login?from=login' || exit 1

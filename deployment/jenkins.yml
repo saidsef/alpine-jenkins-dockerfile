@@ -49,6 +49,25 @@ spec:
             - name: jenkins-storage
               mountPath: /var/jenkins_home/secrets
               subPath: secrets
+          livenessProbe:
+            exec:
+              command:
+                - pgrep
+                - java
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            tcpSocket:
+                port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "1024Mi"
+            limits:
+              cpu: "700m"
+              memory: "2048Mi"
       volumes:
         - name: jenkins-storage
           emptyDir: {}

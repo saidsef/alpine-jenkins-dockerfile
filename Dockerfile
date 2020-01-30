@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:alpine
 
 # Set labels
-LABEL version="2.201"
+LABEL version="2.219"
 LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
@@ -29,8 +29,8 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 RUN /usr/local/bin/install-plugins.sh < /var/jenkins_home/plugins.txt
 RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt
 
-# first fix dir/file permission issues
-#USER jenkins
+# Fix dir/file permission issues
+##USER jenkins
 
 # Health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:${PORT}/login?from=login' || exit 1

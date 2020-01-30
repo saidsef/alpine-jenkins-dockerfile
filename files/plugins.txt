@@ -11,7 +11,7 @@ apache-httpcomponents-client-4-api
 authentication-tokens
 aws-batch
 aws-codecommit-trigger
-aws-codepipeline:0.38
+aws-codepipeline
 aws-credentials
 aws-java-sdk
 aws-lambda
@@ -45,6 +45,7 @@ branch-api
 build-monitor-plugin
 build-time-blame
 build-timeout
+build-timestamp
 build-token-root
 build-with-parameters
 claim
@@ -56,8 +57,8 @@ codedeploy
 command-launcher
 conditional-buildstep
 config-file-provider
-configuration-as-code-support:latest
-configuration-as-code:latest
+configuration-as-code
+configuration-as-code-support
 convert-to-pipeline
 credentials
 credentials-binding
@@ -66,8 +67,11 @@ cucumber-reports
 cucumber-testresult-plugin
 dashboard-view
 delivery-pipeline-plugin
+dependency-check-jenkins-plugin
 display-url-api
 docker-commons
+docker-java-api
+docker-plugin
 docker-swarm
 docker-workflow
 downstream-build-cache
@@ -97,6 +101,7 @@ golang
 google-login
 gradle
 groovy-postbuild
+h2-api
 handlebars
 handy-uri-templates-2-api
 html5-notifier-plugin
@@ -105,6 +110,7 @@ hudson-pview-plugin
 icon-shim
 jackson2-api
 javadoc
+jaxb
 jdk-tool
 jenkins-design-language
 jira
@@ -159,6 +165,7 @@ pipeline-rest-api
 pipeline-stage-step
 pipeline-stage-tags-metadata
 pipeline-stage-view
+pipeline-utility-steps
 plain-credentials
 pubsub-light
 python
@@ -184,12 +191,15 @@ systemloadaverage-monitor
 tasks
 terraform
 thinBackup
+throttle-concurrents
 timestamper
 token-macro
+trilead-api
 variant
 view-job-filters
 vsphere-cloud
 webhook-step
+websocket
 windows-slaves
 workflow-aggregator
 workflow-api

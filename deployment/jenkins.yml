@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: jenkins
-  namespace: cicd
   labels:
     name: jenkins
     app: jenkins
@@ -19,16 +18,25 @@ spec:
         name: app
         app: jenkins
     spec:
+      shareProcessNamespace: true
+      initContainers:
+        - name: jenkins-init
+          image: busybox:latest
+          command: ["sh", "-c", "chmod -R 777 /var/jenkins_home"]
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: jenkins-storage
+              mountPath: /var/jenkins_home
       containers:
-        - image: saidsef/alpine-jenkins-dockerfile:latest
-          name: jenkins
+        - name: jenkins-master
+          image: saidsef/alpine-jenkins-dockerfile:master
           imagePullPolicy: Always
           ports:
             - protocol: TCP
               containerPort: 8080
               name: jenkins
             - protocol: TCP
-              containerPort: 5000
+              containerPort: 50000
               name: agent
           volumeMounts:
             - name: jenkins-storage
@@ -63,11 +71,13 @@ spec:
             periodSeconds: 5
           resources:
             requests:
-              cpu: "300m"
+              cpu: "500m"
               memory: "1024Mi"
             limits:
-              cpu: "700m"
+              cpu: "900m"
               memory: "2048Mi"
       volumes:
         - name: jenkins-storage
-          emptyDir: {}
+          hostPath:
+            path: /mnt/jenkins
+            type: DirectoryOrCreate

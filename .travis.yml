@@ -1,9 +1,9 @@
 dist: xenial
 sudo: required
-branches:
-  only:
-  - master
-  - "/^release-.*$/"
+# branches:
+#   only:
+#   - master
+#   - "/^release-.*$/"
 git:
   depth: 10
   submodules: true

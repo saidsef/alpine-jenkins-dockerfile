@@ -24,7 +24,7 @@ Once Jenkins is up and running go to http://localhost:8080
 Create `namespace` called `cicd` via `kubectl create namespace cicd`, and then deploy template:
 
 ```bash
-kubectl apply -f k8s-jenkins-cicd.yml
+kubectl apply -k ./deployment
 ```
 
 To login:

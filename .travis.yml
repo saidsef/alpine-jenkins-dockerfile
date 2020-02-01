@@ -1,5 +1,9 @@
-servuce:
-  - docker
+dist: xenial
+sudo: required
+# branches:
+#   only:
+#   - master
+#   - "/^release-.*$/"
 git:
   depth: 10
   submodules: true

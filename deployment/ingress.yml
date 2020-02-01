@@ -1,20 +1,13 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: jenkins
-  namespace: cicd
   labels:
     name: jenkins
     app: jenkins
   annotations:
     kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/proxy-body-size: "900m"
-    nginx.ingress.kubernetes.io/proxy-body-size: "900m"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: 15
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       server_tokens off;
 spec:

@@ -14,10 +14,10 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 
 #### Locally
 ```bash
-$ docker pull saidsef/alpine-jenkins-dockerfile:dev
-$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:dev
+$ docker pull saidsef/alpine-jenkins-dockerfile:master
+$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:master
 ```
-Once Jenkins is up and running go to http://host-name:8080
+Once Jenkins is up and running go to http://localhost:8080
 
 #### Kubernetes
 

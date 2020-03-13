@@ -1,14 +1,14 @@
-FROM jenkins/jenkins:alpine
+FROM jenkins/jenkins:lts-alpine
 
 # Set labels
-LABEL version="2.219"
+LABEL version="2.204.5"
 LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
 ARG BUILD_ID=""
 
 ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true"
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Xmx=2g"
 ENV PORT ${PORT:-8080}
 
 # Install graphviz and build information

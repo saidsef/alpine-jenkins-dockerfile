@@ -7,9 +7,9 @@ metadata:
     name: jenkins
     app: jenkins
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: jenkins
+    app: jenkins-master
   ports:
     - name: jenkins
       port: 80

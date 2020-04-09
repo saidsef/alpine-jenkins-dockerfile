@@ -15,8 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        name: app
-        app: jenkins
+        app: jenkins-master
     spec:
       shareProcessNamespace: true
       initContainers:
@@ -64,11 +63,17 @@ spec:
                 - java
             initialDelaySeconds: 10
             periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 2
+            timeoutSeconds: 3
           readinessProbe:
             tcpSocket:
                 port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 2
+            timeoutSeconds: 3
           resources:
             requests:
               cpu: "500m"

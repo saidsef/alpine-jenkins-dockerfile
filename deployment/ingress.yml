@@ -7,9 +7,7 @@ metadata:
     name: jenkins
     app: jenkins
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      server_tokens off;
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: jenkins.saidsef.co.uk

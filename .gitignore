@@ -1,1 +1,5 @@
 # ignore files/folders
+**/.vscode
+*.swp
+build/*
+operator/*

@@ -1,3 +1,7 @@
 README.md
 .git/
 .gitignore
+**/.vscode
+*.swp
+build/*
+operator/*

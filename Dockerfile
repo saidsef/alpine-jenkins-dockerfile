@@ -8,7 +8,7 @@ LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 ARG BUILD_ID=""
 
 ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Xmx=2g"
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Xmx2g"
 ENV PORT ${PORT:-8080}
 
 # Install graphviz and build information

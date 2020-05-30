@@ -1,20 +1,29 @@
-dist: xenial
-sudo: required
-# branches:
-#   only:
-#   - master
-#   - "/^release-.*$/"
+language: shell
+
+os: linux
+
+dist: bionic
+
+services:
+  - docker 
+
 git:
   depth: 10
   submodules: true
+
 before_script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker pull jenkins/jenkins:lts-alpine
+
 script:
   - docker build --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
+
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
   - docker push saidsef/alpine-jenkins-dockerfile
+
 notifications:
   email: true
   on_success: always
   on_failure: change
-after_success:
-  - echo "All done!"

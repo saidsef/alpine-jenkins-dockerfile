@@ -1,7 +1,5 @@
 language: ruby
-
 os: linux
-
 dist: bionic
 
 services:
@@ -21,7 +19,11 @@ before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 deploy:
-  - docker push saidsef/alpine-jenkins-dockerfile
+  provider: script
+  script: /script/deploy.sh
+  # on:
+  #   all_branches: true
+  #   condition: $TRAVIS_BRANCH =~ ^(master|develop)$
 
 notifications:
   email: true

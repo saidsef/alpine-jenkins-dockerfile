@@ -18,8 +18,9 @@ COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 # Disable plugin banner on startup
 RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
+USER root
+
 RUN apk --no-cache add graphviz && \
-    apk del build-base linux-headers pcre-dev openssl-dev && \
     chown jenkins:jenkins -R /usr/share/jenkins && \
     chown jenkins:jenkins -R /var/jenkins_home
 

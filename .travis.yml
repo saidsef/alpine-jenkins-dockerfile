@@ -16,7 +16,11 @@ before_script:
 
 script:
   - docker build --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
+
+before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
   - docker push saidsef/alpine-jenkins-dockerfile
 
 notifications:

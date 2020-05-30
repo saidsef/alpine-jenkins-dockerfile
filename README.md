@@ -17,8 +17,8 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 #### Locally
 
 ```bash
-$ docker pull saidsef/alpine-jenkins-dockerfile:master
-$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:master
+$ docker pull saidsef/alpine-jenkins-dockerfile:latest
+$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:latest
 ```
 
 Once Jenkins is up and running go to http://localhost:8080
@@ -38,7 +38,7 @@ kubectl logs pod/<pod-name> -n cicd -f | grep 'created local'
 
 ** OR **
 
-docker logs saidsef/alpine-jenkins-dockerfile:dev | grep 'created local'
+docker logs saidsef/alpine-jenkins-dockerfile:latest | grep 'created local'
 ```
 
 Default admin password will be print in the log output - be patient, depending on the available resources startup might take a while!

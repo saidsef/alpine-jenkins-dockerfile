@@ -4,6 +4,7 @@ active-directory
 all-changes
 amazon-ecr
 amazon-ecs
+analysis-collector
 analysis-core
 ant
 antisamy-markup-formatter
@@ -42,6 +43,8 @@ blueocean-rest-impl
 blueocean-web
 bouncycastle-api
 branch-api
+build-history-manager
+build-history-metrics-plugin
 build-monitor-plugin
 build-time-blame
 build-timeout
@@ -179,6 +182,8 @@ script-security
 semantic-versioning-plugin
 simple-theme-plugin
 slack
+snakeyaml-api
+splunk-devops
 sse-gateway
 ssh-agent
 ssh-credentials

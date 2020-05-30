@@ -50,21 +50,23 @@ instance.save()
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
 
-// Updated Theme
-def ipAddress = InetAddress.localHost.hostAddress
-def colours = ['blue','green','yellow','cyan','lime','blue-grey']
-def file = new File("./colour")
-def r = new Random()
+try {
+  // Updated Theme
+  def ipAddress = InetAddress.localHost.hostAddress
+  def colours = ['blue','green','yellow','cyan','lime','blue-grey']
+  def r = new Random()
 
-for (pd in PageDecorator.all()) {
-  def colour = (file.exists()) ? file.getText() : colours.get(r.nextInt(colours.size()))
-  file.write colour
-  if (pd instanceof org.codefirst.SimpleThemeDecorator) {
-    println "--> updating jenkins theme - ${colour}"
-    pd.setCssUrl("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")
+  for (pd in PageDecorator.all()) {
+    def colour = colours.get(r.nextInt(colours.size()))
+    if (pd instanceof org.codefirst.SimpleThemeDecorator) {
+      println "--> updating jenkins theme - ${colour}"
+      pd.setCssUrl("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")
+    }
+    pd.save()
+    pd.load()
   }
-  pd.save()
-  pd.load()
+} catch(Exception e) {
+  println "--> styling failed"
 }
 
 println "#########################################################"

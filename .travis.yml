@@ -1,4 +1,4 @@
-language: shell
+language: ruby
 
 os: linux
 

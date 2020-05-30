@@ -10,16 +10,19 @@ services:
 git:
   depth: 10
   submodules: true
+  
+env:
+  - BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)"
 
 before_script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker pull jenkins/jenkins
 
 script:
-  - docker build --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
-  - docker push saidsef/alpine-jenkins-dockerfile
+  - docker build --build-arg $BUILD_ID -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
 
 after_success:
-  - echo "All done!"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push saidsef/alpine-jenkins-dockerfile
 
 notifications:
   email: true

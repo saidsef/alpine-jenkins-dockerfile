@@ -2,7 +2,7 @@ language: shell
 
 os: linux
 
-dist: xenial
+dist: bionic
 
 services:
   - docker 

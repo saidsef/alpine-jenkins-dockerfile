@@ -11,9 +11,6 @@ ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Xmx=2g"
 ENV PORT ${PORT:-8080}
 
-# Install graphviz and build information
-USER root
-
 # Copy plugins, groovy and css to container
 COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
@@ -21,10 +18,8 @@ COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
 # Disable plugin banner on startup
 RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
-RUN apk --update add graphviz && \
+RUN apk --no-cache add graphviz && \
     apk del build-base linux-headers pcre-dev openssl-dev && \
-    rm -rfv /var/cache/apk/* && \
-    rm -rfv /tmp/* && \
     chown jenkins:jenkins -R /usr/share/jenkins && \
     chown jenkins:jenkins -R /var/jenkins_home
 

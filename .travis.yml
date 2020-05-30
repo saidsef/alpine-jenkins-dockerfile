@@ -15,7 +15,7 @@ env:
   - BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)"
 
 before_script:
-  - docker pull jenkins/jenkins
+  - docker pull jenkins/jenkins:lts-alpine
 
 script:
   - docker build --build-arg $BUILD_ID -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .

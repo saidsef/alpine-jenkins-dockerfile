@@ -28,7 +28,7 @@ spec:
               mountPath: /var/jenkins_home
       containers:
         - name: jenkins-master
-          image: saidsef/alpine-jenkins-dockerfile:master
+          image: saidsef/alpine-jenkins-dockerfile:latest
           imagePullPolicy: Always
           ports:
             - protocol: TCP

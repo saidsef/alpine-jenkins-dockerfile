@@ -5,18 +5,21 @@
 import jenkins.model.*
 import hudson.model.*
 import hudson.security.*
+import jenkins.security.s2m.AdminWhitelistRule
 import hudson.security.csrf.DefaultCrumbIssuer
 import hudson.extension.*
 
+Jenkins.instance.getInjector().getInstance(AdminWhitelistRule.class).setMasterKillSwitch(false)
+
 def instance = Jenkins.getInstance()
 def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
-def host     = System.getenv("JENKINS_HOSTNAME") ?: "127.0.0.1".toString()
+def host     = System.getenv("JENKINS_HOSTNAME") ?: InetAddress.localHost.hostAddress.toString()
 def port     = System.getenv("JENKINS_PORT") ?: "8080".toString()
 
 // email parameters
 def jenkinsParameters = [
   email:  "Mr Jenkins <jenkins@${host}>",
-  url:    "https://${host}:${port}/"
+  url:    "http://${host}:${port}/"
 ]
 
 // set Jenkins Admin URL and email
@@ -53,20 +56,18 @@ instance.save()
 try {
   // Updated Theme
   def ipAddress = InetAddress.localHost.hostAddress
-  def colours = ['blue','green','yellow','cyan','lime','blue-grey']
+  def colours = ['blue','green','teal','cyan','lime','blue-grey','grey']
+  def colour = colours.get(r.nextInt(colours.size()))
   def r = new Random()
 
-  for (pd in PageDecorator.all()) {
-    def colour = colours.get(r.nextInt(colours.size()))
-    if (pd instanceof org.codefirst.SimpleThemeDecorator) {
-      println "--> updating jenkins theme - ${colour}"
-      pd.setCssUrl("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")
-    }
-    pd.save()
-    pd.load()
-  }
+  def pd = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
+  pd.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")])
+  pd.save()
+
+  println "--> updating jenkins theme to: ${colour}"
 } catch(Exception e) {
   println "--> styling failed"
+  println "${e}"
 }
 
 println "#########################################################"

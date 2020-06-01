@@ -1,14 +1,14 @@
-FROM jenkins/jenkins:lts-alpine
+FROM jenkins/jenkins:alpine
 
 # Set labels
-LABEL version="2.204.5"
+LABEL version="2.238"
 LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
 ARG BUILD_ID=""
 
 ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Xmx2g"
+ENV JAVA_OPTS="-Dhudson.footerURL=https://saidsef.co.uk -Djenkins.install.runSetupWizard=false -Dhudson.remoting.ClassFilter=java.security.KeyPair,sun.security.rsa.RSAPrivateCrtKeyImpl -Dpermissive-script-security.enabled=true -Djdk.tls.client.protocols=TLSv1.2 -Xmx2g"
 ENV PORT ${PORT:-8080}
 
 # Copy plugins, groovy and css to container

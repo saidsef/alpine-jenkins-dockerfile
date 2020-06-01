@@ -6,17 +6,18 @@ amazon-ecr
 amazon-ecs
 analysis-collector
 analysis-core
+ansicolor
 ant
 antisamy-markup-formatter
 apache-httpcomponents-client-4-api
 authentication-tokens
+authorize-project
 aws-batch
 aws-codecommit-trigger
-aws-codepipeline
 aws-credentials
 aws-java-sdk
 aws-lambda
-backup
+aws-lambda-cloud
 badge
 bitbucket
 bitbucket-build-status-notifier
@@ -78,15 +79,12 @@ docker-plugin
 docker-swarm
 docker-workflow
 downstream-build-cache
-downstream-buildview
 durable-task
 ec2
 ec2-deployment-dashboard
 ec2-fleet
 email-ext
-envfile
 environment-dashboard
-export-params
 external-monitor-job
 favorite
 git
@@ -107,9 +105,7 @@ groovy-postbuild
 h2-api
 handlebars
 handy-uri-templates-2-api
-html5-notifier-plugin
 htmlpublisher
-hudson-pview-plugin
 icon-shim
 jackson2-api
 javadoc
@@ -123,8 +119,6 @@ jquery-detached
 jsch
 junit
 ldap
-libvirt-slave
-livescreenshot
 lockable-resources
 log-parser
 mailer
@@ -134,7 +128,6 @@ matrix-project
 maven-plugin
 mercurial
 metrics
-mission-control-view
 momentjs
 multiple-scms
 nexus-artifact-uploader
@@ -147,7 +140,6 @@ performance-signature-ui
 performance-signature-viewer
 perfpublisher
 permissive-script-security
-persistent-parameter
 pipeline-aggregator-view
 pipeline-aws
 pipeline-build-step
@@ -179,7 +171,6 @@ saml
 scalable-amazon-ecs
 scm-api
 script-security
-semantic-versioning-plugin
 simple-theme-plugin
 slack
 snakeyaml-api
@@ -192,9 +183,7 @@ statistics-gatherer
 structs
 subversion
 swarm
-systemloadaverage-monitor
 tasks
-terraform
 thinBackup
 throttle-concurrents
 timestamper
@@ -204,7 +193,6 @@ variant
 view-job-filters
 vsphere-cloud
 webhook-step
-websocket
 windows-slaves
 workflow-aggregator
 workflow-api
@@ -218,6 +206,5 @@ workflow-scm-step
 workflow-step-api
 workflow-support
 ws-cleanup
-xfpanel
 xvfb
 yet-another-build-visualizer

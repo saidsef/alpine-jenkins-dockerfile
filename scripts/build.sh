@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-BUILD_ID=$1
+TAG=$1
 
 function usage {
   echo """
@@ -12,17 +12,17 @@ function usage {
 
 function build {
   echo "Build container"
-  docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/${PWD##*/}:${BUILD_ID} .
+  docker build --build-arg "TAG=${TAG}" -t saidsef/${PWD##*/}:${TAG} .
 }
 
 function push {
   echo "Pushing image to docker hub"
-  docker push saidsef/${PWD##*/}:${BUILD_ID}
+  docker push saidsef/${PWD##*/}:${TAG}
   echo $?
 }
 
 function main {
-  if [ -z "${BUILD_ID}" ]; then
+  if [ -z "${TAG}" ]; then
     usage
   else
     build

@@ -81,6 +81,17 @@ spec:
             limits:
               cpu: "900m"
               memory: "2048Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsGroup: 1000
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - NET_BIND_SERVICE
+                - NET_RAW
+                - SYS_TIME
       volumes:
         - name: jenkins-storage
           hostPath:

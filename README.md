@@ -6,8 +6,8 @@
 ### Build and deploy locally
 
 ```bash
-$ docker build -t jenkins .
-$ docker run -d -p 8080:8080 jenkins
+docker build -t jenkins .
+docker run -d -p 8080:8080 jenkins
 ```
 
 Once Jenkins is up and running go to http://127.0.0.1:8080
@@ -17,8 +17,8 @@ Once Jenkins is up and running go to http://127.0.0.1:8080
 #### Locally
 
 ```bash
-$ docker pull saidsef/alpine-jenkins-dockerfile:latest
-$ docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:latest
+docker pull saidsef/alpine-jenkins-dockerfile:latest
+docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:latest
 ```
 
 Once Jenkins is up and running go to http://localhost:8080
@@ -51,5 +51,5 @@ kubectl port-forward <pod-name> 8080:8080
 
 ### Links
 
-- Job DSL API https://jenkinsci.github.io/job-dsl-plugin/
-- Example Jobs https://github.com/jenkinsci/pipeline-examples
+- [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+- [Example Jobs](https://github.com/jenkinsci/pipeline-examples)

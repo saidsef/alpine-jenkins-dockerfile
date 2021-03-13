@@ -1,4 +1,4 @@
-language: ruby
+language: bash
 os: linux
 dist: bionic
 
@@ -28,5 +28,3 @@ deploy:
 
 notifications:
   email: true
-  on_success: always
-  on_failure: change

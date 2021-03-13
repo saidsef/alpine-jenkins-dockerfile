@@ -1,11 +1,8 @@
-Parameterized-Remote-Trigger
 ace-editor
 active-directory
 all-changes
 amazon-ecr
 amazon-ecs
-analysis-collector
-analysis-core
 ansicolor
 ant
 antisamy-markup-formatter
@@ -47,6 +44,7 @@ branch-api
 build-history-manager
 build-history-metrics-plugin
 build-monitor-plugin
+build-pipeline-plugin
 build-time-blame
 build-timeout
 build-timestamp
@@ -62,7 +60,6 @@ command-launcher
 conditional-buildstep
 config-file-provider
 configuration-as-code
-configuration-as-code-support
 convert-to-pipeline
 credentials
 credentials-binding
@@ -113,6 +110,7 @@ jaxb
 jdk-tool
 jenkins-design-language
 jira
+job-dsl
 jobConfigHistory
 jquery
 jquery-detached
@@ -134,6 +132,7 @@ nexus-artifact-uploader
 node-iterator-api
 nodejs
 pam-auth
+Parameterized-Remote-Trigger
 parameterized-trigger
 performance
 performance-signature-ui
@@ -183,7 +182,6 @@ statistics-gatherer
 structs
 subversion
 swarm
-tasks
 thinBackup
 throttle-concurrents
 timestamper

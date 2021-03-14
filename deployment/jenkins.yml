@@ -33,10 +33,10 @@ spec:
           ports:
             - protocol: TCP
               containerPort: 8080
-              name: jenkins
+              name: tcp-jenkins
             - protocol: TCP
               containerPort: 50000
-              name: agent
+              name: tcp-agent
           volumeMounts:
             - name: jenkins-storage
               mountPath: /var/jenkins_home/logs

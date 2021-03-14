@@ -11,11 +11,11 @@ spec:
   selector:
     app: jenkins-master
   ports:
-    - name: jenkins
+    - name: tcp-jenkins
       port: 80
       protocol: TCP
       targetPort: 8080
-    - name: agent
+    - name: tcp-agent
       port: 50000
       protocol: TCP
       targetPort: 50000

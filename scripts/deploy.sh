@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 function deploy {
   echo "Deploy image to docker hub"

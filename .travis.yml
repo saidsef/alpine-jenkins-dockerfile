@@ -1,4 +1,4 @@
-language: ruby
+language: bash
 os: linux
 dist: bionic
 
@@ -10,10 +10,10 @@ git:
   submodules: true
 
 before_script:
-  - docker pull jenkins/jenkins:lts-alpine
+  - docker version
 
 script:
-  - docker build --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
+  - docker build --pull --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
 
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
@@ -22,11 +22,9 @@ deploy:
   provider: script
   skip_cleanup: true
   script: ./script/deploy.sh
-  # on:
-  #   all_branches: true
-  #   condition: $TRAVIS_BRANCH =~ ^(master|develop)$
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|develop)$
 
 notifications:
   email: true
-  on_success: always
-  on_failure: change

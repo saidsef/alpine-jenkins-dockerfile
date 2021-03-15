@@ -17,7 +17,7 @@ script:
   - docker build --pull --build-arg BUILD_ID="$(git log --oneline --sparse --decorate --graph -n10)" -t saidsef/alpine-jenkins-dockerfile:$TRAVIS_BRANCH .
 
 after_script:
-  - ./scripts/deploy.sh
+  - scripts/deploy.sh
 
 notifications:
   email: true

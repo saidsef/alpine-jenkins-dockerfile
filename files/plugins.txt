@@ -162,6 +162,7 @@ pipeline-stage-view
 pipeline-utility-steps
 plain-credentials
 pubsub-light
+pull-request-monitoring-plugin
 python
 resource-disposer
 role-strategy

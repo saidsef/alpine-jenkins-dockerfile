@@ -38,5 +38,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build docker image
       run: |
-        docker tag 
         docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}

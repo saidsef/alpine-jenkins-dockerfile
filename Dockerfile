@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:alpine
 
 # Set labels
-LABEL version="2.238"
+LABEL version="2.5"
 LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 

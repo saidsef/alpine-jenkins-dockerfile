@@ -30,6 +30,7 @@ jenkinsLocationConfiguration.save()
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 hudsonRealm.createAccount('admin', password)
+hudsonRealm.createAccount('saidsef', password)
 instance.setSecurityRealm(hudsonRealm)
 instance.save()
 
@@ -48,21 +49,19 @@ matrix.add(Item.READ,'anonymous')
 // info found from http://javadoc.jenkins-ci.org/hudson/security/class-use/Permission.html#jenkins.slaves
 matrix.add(Jenkins.ADMINISTER, "saidsef")
 instance.setAuthorizationStrategy(matrix)
-instance.save()
-
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
 
 try {
   // Updated Theme
+  def r = new Random()
   def ipAddress = InetAddress.localHost.hostAddress
   def colours = ['blue','green','teal','cyan','lime','blue-grey','grey']
   def colour = colours.get(r.nextInt(colours.size()))
-  def r = new Random()
 
-  def pd = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
-  pd.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")])
-  pd.save()
+  def theme    = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
+  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")])
+  instance.save()
 
   println "--> updating jenkins theme to: ${colour}"
 } catch(Exception e) {

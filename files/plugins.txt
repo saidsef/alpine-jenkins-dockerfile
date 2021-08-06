@@ -10,14 +10,12 @@ apache-httpcomponents-client-4-api
 authentication-tokens
 authorize-project
 aws-batch
-aws-codecommit-trigger
 aws-credentials
 aws-java-sdk
 aws-lambda
 aws-lambda-cloud
 badge
 bitbucket
-bitbucket-build-status-notifier
 blueocean
 blueocean-autofavorite
 blueocean-bitbucket-pipeline
@@ -44,7 +42,6 @@ branch-api
 build-history-manager
 build-history-metrics-plugin
 build-monitor-plugin
-build-pipeline-plugin
 build-time-blame
 build-timeout
 build-timestamp
@@ -73,7 +70,6 @@ display-url-api
 docker-commons
 docker-java-api
 docker-plugin
-docker-swarm
 docker-workflow
 downstream-build-cache
 durable-task
@@ -94,7 +90,6 @@ github
 github-api
 github-branch-source
 github-issues
-github-organization-folder
 golang
 google-login
 gradle
@@ -103,7 +98,6 @@ h2-api
 handlebars
 handy-uri-templates-2-api
 htmlpublisher
-icon-shim
 jackson2-api
 javadoc
 jaxb
@@ -127,10 +121,10 @@ maven-plugin
 mercurial
 metrics
 momentjs
-multiple-scms
 nexus-artifact-uploader
 node-iterator-api
 nodejs
+packer
 pam-auth
 Parameterized-Remote-Trigger
 parameterized-trigger
@@ -150,7 +144,6 @@ pipeline-input-step
 pipeline-maven
 pipeline-milestone-step
 pipeline-model-api
-pipeline-model-declarative-agent
 pipeline-model-definition
 pipeline-model-extensions
 pipeline-multibranch-defaults
@@ -182,7 +175,7 @@ ssh-slaves
 statistics-gatherer
 structs
 subversion
-swarm
+terraform
 thinBackup
 throttle-concurrents
 timestamper

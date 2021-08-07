@@ -3,6 +3,7 @@ active-directory
 all-changes
 amazon-ecr
 amazon-ecs
+ansible
 ansicolor
 ant
 antisamy-markup-formatter
@@ -78,6 +79,8 @@ ec2-deployment-dashboard
 ec2-fleet
 email-ext
 environment-dashboard
+extended-choice-parameter
+extensible-choice-parameter
 external-monitor-job
 favorite
 git
@@ -110,6 +113,9 @@ jquery
 jquery-detached
 jsch
 junit
+kubernetes
+kubernetes-client-api
+kubernetes-credentials
 ldap
 lockable-resources
 log-parser
@@ -181,6 +187,7 @@ throttle-concurrents
 timestamper
 token-macro
 trilead-api
+uno-choice
 variant
 view-job-filters
 vsphere-cloud

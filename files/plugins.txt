@@ -181,6 +181,7 @@ ssh-slaves
 statistics-gatherer
 structs
 subversion
+templating-engine
 terraform
 thinBackup
 throttle-concurrents

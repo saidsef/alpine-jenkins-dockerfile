@@ -17,9 +17,23 @@ jobs:
     - name: Set Tag Name
       run: |
         echo "TAG=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+        echo "BUILD_ID=$(git log -1 --pretty=format:%ad --date=format:%Y.%m)" >> $GITHUB_ENV
+        echo "DATE=$(echo date +'%Y.%m')" >> $GITHUB_ENV
     - name: Build docker image
       run: |
-        docker build -t docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} .
+        docker build --build-arg BUILD_ID="${{ env.BUILD_ID }}" -t docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} .
+    - name: Create tag
+      uses: actions/github-script@v3
+      if: ${{ github.event.pull_request.merged == 'true' }}
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: "refs/tags/${{ env.DATE }}",
+            sha: context.sha
+          })
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
@@ -36,6 +50,11 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build docker image
+    - name: Push docker image
       run: |
         docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}
+    - name: Schedule - Push docker image
+      if: ${{ github.event_name == 'schedule' }}
+      run: |
+        docker tag docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}
+        docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}

@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: cicd
 
 resources:
-#- namespace.yml
 - jenkins.yml
 - service.yml
 - ingress.yml

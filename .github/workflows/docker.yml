@@ -1,5 +1,5 @@
 ---
-name: Docker Image CI
+name: CI
 on:
   push:
     branches:
@@ -24,7 +24,7 @@ jobs:
         docker build --build-arg BUILD_ID="${{ env.BUILD_ID }}" -t docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} .
     - name: Create tag
       uses: actions/github-script@v3
-      if: ${{ github.event.pull_request.merged == 'true' }}
+      # if: ${{ github.event.pull_request.merged == 'true' }}
       with:
         github-token: ${{ github.token }}
         script: |

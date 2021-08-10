@@ -17,8 +17,8 @@ jobs:
     - name: Set Tag Name
       run: |
         echo "TAG=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
-        echo "BUILD_ID=$(git log -1 --pretty=format:%ad --date=format:%Y.%m)" >> $GITHUB_ENV
-        echo "DATE=$(echo date +'%Y.%m')" >> $GITHUB_ENV
+        echo "BUILD_ID=$(echo `git log -1 --pretty=format:%ad --date=format:%Y.%m`)" >> $GITHUB_ENV
+        echo "DATE=$(echo `date +'%Y.%m'`)" >> $GITHUB_ENV
     - name: Build docker image
       run: |
         docker build --build-arg BUILD_ID="${{ env.BUILD_ID }}" -t docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} .

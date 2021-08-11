@@ -6,49 +6,40 @@
  * by saidsef@gmail.com
  */
 
-import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
+def now = new Date()
 
 pipeline {
-  agent {
-    label ""
+  agent any
+  options {
+    skipStagesAfterUnstable()
+    disableConcurrentBuilds()
+    timestamps()
+  }
+  environment {
+    TAG = ${now.format("Y.M")}
   }
   stages {
     stage("Checkout") {
       steps {
+        deleteDir()
         checkout scm
       }
     }
-  }
-}
-
-node {
-  try {
-    currentBuild.result = "SUCCESS"
-    stage("Checkout") {
-      deleteDir()
-      checkout scm
+    stage("Build and push container") {
+      steps {
+        def app = docker.build("saidsef/alpine-jenkins-dockerfile:${env.BUILD_NUMBER}", ".")
+        /**
+        * In order to configure the registry credentials, go the Jenkins Manager Credentials page.
+        * Add a new username/password entry and enter your registry login and password.
+        */
+        app.withRegistry("https://registry.hub.docker.com", "dockerhub")
+        app.push("saidsef/alpine-jenkins-dockerfile:${env.BUILD_NUMBER}")
+      }
     }
-    stage("Build and test container") {
-      def app = docker.build("saidsef/alpine-jenkins-dockerfile:${env.BUILD_NUMBER}", ".")
-      /**
-      * In order to configure the registry credentials, go the Jenkins Manager Credentials page.
-      * Add a new username/password entry and enter your registry login and password.
-      */
-      app.withRegistry("https://registry.hub.docker.com", "dockerhub")
-      app.push("saidsef/alpine-jenkins-dockerfile:${env.BUILD_NUMBER}")
+    post {
+      success {
+        deleteDir()
+      }
     }
-  } catch (err) {
-    currentBuild.result = "FAILURE"
-    throw err
-  } finally {
-    /**
-    * Clean up build directory
-    */
-    deleteDir()
   }
 }

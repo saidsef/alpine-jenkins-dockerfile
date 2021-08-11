@@ -38,10 +38,10 @@ pipeline {
         }
       }
     }
-    post {
-      success {
-        deleteDir()
-      }
+  }
+  post {
+    success {
+      deleteDir()
     }
   }
 }

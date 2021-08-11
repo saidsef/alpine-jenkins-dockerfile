@@ -56,11 +56,11 @@ try {
   // Updated Theme
   def r = new Random()
   def ipAddress = InetAddress.localHost.hostAddress
-  def colours = ['blue','green','teal','cyan','lime','blue-grey','grey']
+  def colours = ['neo-light']
   def colour = colours.get(r.nextInt(colours.size()))
 
   def theme    = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
-  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css")])
+  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://tobix.github.io/jenkins-neo2-theme/dist/${colour}.css")])
   instance.save()
 
   println "--> updating jenkins theme to: ${colour}"

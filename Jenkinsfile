@@ -16,7 +16,7 @@ pipeline {
     timestamps()
   }
   environment {
-    TAG = ${now.format("Y.M")}
+    TAG = "${now.format("Y.M")}"
   }
   stages {
     stage("Checkout") {

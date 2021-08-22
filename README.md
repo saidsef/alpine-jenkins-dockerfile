@@ -25,23 +25,19 @@ Once Jenkins is up and running go to http://localhost:8080
 
 #### Kubernetes
 
-Create `namespace` called `cicd` via `kubectl create namespace cicd`, and then deploy template:
-
 ```bash
 kubectl apply -k ./deployment
 ```
 
+> Optional: Deploy to specific `namespace` via `--namespace`.
+
 To login:
 
 ```bash
-kubectl logs pod/<pod-name> -n cicd -f | grep 'created local'
-
-** OR **
-
-docker logs saidsef/alpine-jenkins-dockerfile:latest | grep 'created local'
+kubectl logs pod/<pod-name> -f | grep 'created local'
 ```
 
-Default admin password will be print in the log output - be patient, depending on the available resources startup might take a while!
+Default admin password will be print in the log output - be **patient**, depending on the available resources startup might take a while!
 
 Once the service has been successfully deployed, use the following command to access login screen:
 

@@ -31,31 +31,33 @@ jobs:
     - name: Build docker image
       run: |
         docker build --build-arg BUILD_ID="${{ env.BUILD_ID }}" -t docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} .
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}
-        format: 'template'
-        template: '@/contrib/sarif.tpl'
-        output: 'trivy-results.sarif'
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: 'trivy-results.sarif'
-    - name: Login to DockerHub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push docker image
-      run: |
-        docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}
-    - name: Schedule - Push docker image
-      if: ${{ github.event_name == 'schedule' }}
-      run: |
-        docker tag docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}
-        docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}
-  test:
+    # - name: Run Trivy vulnerability scanner
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     image-ref: docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}
+    #     format: 'template'
+    #     template: '@/contrib/sarif.tpl'
+    #     output: 'trivy-results.sarif'
+    # - name: Upload Trivy scan results to GitHub Security tab
+    #   uses: github/codeql-action/upload-sarif@v1
+    #   with:
+    #     sarif_file: 'trivy-results.sarif'
+    # - name: Login to DockerHub
+    #   uses: docker/login-action@v1
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Push docker image
+    #   env:
+    #     DOCKER_BUILDKIT: 1
+    #   run: |
+    #     docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }}
+    # - name: Schedule - Push docker image
+    #   if: ${{ github.event_name == 'schedule' }}
+    #   run: |
+    #     docker tag docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.TAG == 'master' && 'latest' || env.TAG }} docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}
+    #     docker push docker.io/saidsef/alpine-jenkins-dockerfile:${{ env.BUILD_ID }}
+  k8s-test:
     runs-on: ubuntu-latest
     needs: [build]
     if: ${{ ! contains(github.ref, 'master') && github.event_name != 'schedule' }}
@@ -64,10 +66,13 @@ jobs:
         uses: helm/kind-action@v1.2.0
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run test
+      - name: Run K8s test
         run: |
           kubectl cluster-info
-          NS=`cat deployment/kustomization.yml  | grep namespace | awk '{ print $2 }'`
+          export NS=`cat deployment/kustomization.yml  | grep namespace | awk '{ print $2 }'`
+          if [ -z "$NS" ]; then
+            export NS='cicd'
+          fi
           kubectl create namespace $NS
-          kubectl apply -k deployment/
+          kubectl apply -n $NS -k deployment/
           kubectl get all -n $NS

@@ -5,3 +5,5 @@ README.md
 *.swp
 build/*
 operator/*
+scripts/*
+test/*

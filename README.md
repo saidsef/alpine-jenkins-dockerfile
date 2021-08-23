@@ -1,5 +1,4 @@
-# Jenkins Docker Container
-
+# Jenkins Docker Container [![Build Status](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/docker.yml/badge.svg)](#deploy-from-remote-repo)
 ## Plugin
  - [Jenkins Plugins List](files/plugins.txt)
 
@@ -21,7 +20,7 @@ docker pull saidsef/alpine-jenkins-dockerfile:latest
 docker run -d -p 8080:8080 saidsef/alpine-jenkins-dockerfile:latest
 ```
 
-Once Jenkins is up and running go to http://localhost:8080
+> Once Jenkins is up and running go to `http://localhost:8080`
 
 #### Kubernetes
 

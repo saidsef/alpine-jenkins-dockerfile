@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:alpine
+FROM docker.io/jenkins/jenkins:alpine
 
 # Set labels
 LABEL version="2.6"

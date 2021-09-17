@@ -1,6 +1,8 @@
 # Jenkins Docker Container [![CI](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/docker.yml/badge.svg)](#deploy-from-remote-repo) [![Tagging](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/tagging.yml/badge.svg)](#deploy-from-remote-repo) [![Release](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/release.yml/badge.svg)](#deploy-from-remote-repo)
+
 ## Plugin
- - [Jenkins Plugins List](files/plugins.txt)
+
+- [Jenkins Plugins List](files/plugins.txt)
 
 ### Build and deploy locally
 

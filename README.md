@@ -1,4 +1,4 @@
-# Jenkins Docker Container [![Build Status](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/docker.yml/badge.svg)](#deploy-from-remote-repo)
+# Jenkins Docker Container [![CI](https://github.com/saidsef/alpine-jenkins-dockerfile/actions/workflows/docker.yml/badge.svg)](#deploy-from-remote-repo)
 ## Plugin
  - [Jenkins Plugins List](files/plugins.txt)
 
@@ -48,3 +48,9 @@ kubectl port-forward <pod-name> 8080:8080
 
 - [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
 - [Example Jobs](https://github.com/jenkinsci/pipeline-examples)
+
+## Contributing
+
+Feel free to contribute by making a [pull request](https://github.com/saidsef/alpine-jenkins-dockerfile/pulls).
+
+Please read the official [Contribution Guide](./CONTRIBUTING.md) for more information on how you can contribute.

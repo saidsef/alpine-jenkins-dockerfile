@@ -12,12 +12,12 @@ function usage {
 
 function build {
   echo "Build container"
-  docker build --build-arg "TAG=${TAG}" -t saidsef/${PWD##*/}:${TAG} .
+  docker build --build-arg "TAG=${TAG}" -t docker.io/saidsef/${PWD##*/}:${TAG} .
 }
 
 function push {
   echo "Pushing image to docker hub"
-  docker push saidsef/${PWD##*/}:${TAG}
+  docker push docker.io/saidsef/${PWD##*/}:${TAG}
   echo $?
 }
 

@@ -10,7 +10,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: jenkins.hostname.tld
+  - host: $(HOST)
     http:
       paths:
       - path: /

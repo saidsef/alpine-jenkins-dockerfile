@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: jenkins-master
+  name: jenkins-main
   labels:
-    name: jenkins-master
-    app: jenkins-master
+    name: jenkins-main
+    app: jenkins-main
 spec:
-  serviceName: jenkins-master
+  serviceName: jenkins-main
   replicas: 1
   selector:
     matchLabels:
-      app: jenkins-master
+      app: jenkins-main
   template:
     metadata:
       labels:
-        app: jenkins-master
+        app: jenkins-main
     spec:
       shareProcessNamespace: true
       initContainers:
@@ -27,8 +27,8 @@ spec:
             - name: jenkins-storage
               mountPath: /var/jenkins_home
       containers:
-        - name: jenkins-master
-          image: saidsef/alpine-jenkins-dockerfile:latest
+        - name: jenkins-main
+          image: docker.io/saidsef/alpine-jenkins-dockerfile:latest
           imagePullPolicy: Always
           ports:
             - protocol: TCP
@@ -77,10 +77,10 @@ spec:
           resources:
             requests:
               cpu: "500m"
-              memory: "2048Mi"
+              memory: "2Gi"
             limits:
               cpu: "900m"
-              memory: "2048Mi"
+              memory: "2Gi"
           securityContext:
             allowPrivilegeEscalation: false
             runAsGroup: 1000

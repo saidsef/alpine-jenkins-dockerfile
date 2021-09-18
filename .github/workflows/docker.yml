@@ -50,7 +50,7 @@ jobs:
       env:
         DOCKER_BUILDKIT: 1
       with:
-        context: ./function
+        context: .
         file: ./Dockerfile
         platforms: linux/amd64
         pull: true

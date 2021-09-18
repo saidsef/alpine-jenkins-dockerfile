@@ -6,3 +6,16 @@ resources:
 - jenkins.yml
 - service.yml
 - ingress.yml
+
+images:
+- name: jenkins-main
+  newName: docker.io/saidsef/alpine-jenkins-dockerfile
+  newTag: latest
+
+vars:
+- fieldref: {}
+  name: HOST
+  objref:
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: jenkins

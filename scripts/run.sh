@@ -25,7 +25,7 @@ function run {
   -v $BASE/jenkins/cache:/var/jenkins_home/cache \
   -v $BASE/jenkins/logs:/var/jenkins_home/jenkins-jobs \
   -v $BASE/jenkins/secrets:/var/jenkins_home/secrets \
-  saidsef/alpine-jenkins-dockerfile:${TAG}
+  docker.io/saidsef/alpine-jenkins-dockerfile:${TAG}
 }
 
 function main {

@@ -84,12 +84,12 @@ jobs:
             } catch (e) {
               console.log(e.status);
             } finally {
-              for (let file of await fs.readdir('./deployment/k8s')) {
+              for (let file of await fs.readdir('./deployment')) {
                 await github.repos.uploadReleaseAsset({
                   owner, repo,
                   release_id: ${{ steps.release.outputs.result }},
                   name: file,
-                  data: await fs.readFile(`./deployment/k8s/${file}`)
+                  data: await fs.readFile(`./deployment/${file}`)
                 })
               }
             }

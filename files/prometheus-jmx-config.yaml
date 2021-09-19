@@ -1,6 +1,7 @@
 ---
 startDelaySeconds: 0
 ssl: false
+hostPort: 127.0.0.1:8081
 lowercaseOutputName: true
 lowercaseOutputLabelNames: true
 

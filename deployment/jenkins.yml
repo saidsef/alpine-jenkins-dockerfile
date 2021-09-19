@@ -7,6 +7,7 @@ metadata:
     name: jenkins-main
     app: jenkins-main
 spec:
+  revisionHistoryLimit: 1
   serviceName: jenkins-main
   replicas: 1
   selector:
@@ -24,7 +25,7 @@ spec:
           command: ["sh", "-c", "chmod -R 777 /var/jenkins_home"]
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home
       containers:
         - name: jenkins-main
@@ -35,25 +36,28 @@ spec:
               containerPort: 8080
               name: tcp-jenkins
             - protocol: TCP
+              containerPort: 8081
+              name: tcp-prometheus
+            - protocol: TCP
               containerPort: 50000
               name: tcp-agent
           volumeMounts:
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/logs
               subPath: logs
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/jobs
               subPath: jobs
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/cache
               subPath: cache
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/jenkins-jobs
               subPath: jenkins-jobs
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/builds
               subPath: builds
-            - name: jenkins-storage
+            - name: storage
               mountPath: /var/jenkins_home/secrets
               subPath: secrets
           livenessProbe:
@@ -77,10 +81,12 @@ spec:
           resources:
             requests:
               cpu: "500m"
-              memory: "2Gi"
+              memory: "3Gi"
+              ephemeral-storage: "4Gi"
             limits:
               cpu: "900m"
-              memory: "2Gi"
+              memory: "3Gi"
+              ephemeral-storage: "8Gi"
           securityContext:
             allowPrivilegeEscalation: false
             runAsGroup: 1000
@@ -93,7 +99,7 @@ spec:
                 - NET_RAW
                 - SYS_TIME
       volumes:
-        - name: jenkins-storage
+        - name: storage
           hostPath:
             path: /mnt/jenkins
             type: DirectoryOrCreate

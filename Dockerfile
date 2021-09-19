@@ -8,19 +8,22 @@ LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 ARG BUILD_ID=""
 
 ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV JAVA_OPTS="-Dhudson.footerURL=https://saidsef.co.uk -Djenkins.install.runSetupWizard=false -Dhudson.remoting.ClassFilter=java.security.KeyPair,sun.security.rsa.RSAPrivateCrtKeyImpl -Dpermissive-script-security.enabled=true -Djdk.tls.client.protocols=TLSv1.2 -Xms2g -Xmx2g -XX:MaxMetaspaceSize=512M -Xss2048K -XX:MaxDirectMemorySize=512M"
+ENV JAVA_OPTS="-Dhudson.footerURL=https://saidsef.co.uk -Djenkins.install.runSetupWizard=false -Dhudson.remoting.ClassFilter=java.security.KeyPair,sun.security.rsa.RSAPrivateCrtKeyImpl -Dpermissive-script-security.enabled=true -Djdk.tls.client.protocols=TLSv1.2 -javaagent:/usr/share/jenkins/jmx_prometheus_javaagent.jar=8081:prometheus-jmx-config.yaml -Xms3g -Xmx3g -XX:MetaspaceSize=1024m -XX:MaxMetaspaceExpansion=128m -XX:MaxMetaspaceSize=2048m -Xss2048k -XX:MaxDirectMemorySize=512m -XX:-UseAdaptiveSizePolicy -XX:G1SummarizeRSetStatsPeriod=1 -XX:G1NewSizePercent=20"
+ENV PROMETHEUS_JMX_JAR_VERSION 0.16.1
 ENV PORT ${PORT:-8080}
 
 # Copy plugins, groovy and css to container
 COPY files/plugins.txt /var/jenkins_home/plugins.txt
 COPY groovy/custom.groovy /var/jenkins_home/init.groovy.d/
+COPY files/prometheus-jmx-config.yaml /var/jenkins_home
 
 # Disable plugin banner on startup
 RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 USER root
 
-RUN apk --no-cache add graphviz && \
+RUN apk --no-cache add curl graphviz && \
+    curl -vSL https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/${PROMETHEUS_JMX_JAR_VERSION}/jmx_prometheus_javaagent-${PROMETHEUS_JMX_JAR_VERSION}.jar -o /usr/share/jenkins/jmx_prometheus_javaagent.jar && \
     chown jenkins:jenkins -R /usr/share/jenkins && \
     chown jenkins:jenkins -R /var/jenkins_home
 
@@ -36,3 +39,5 @@ HEALTHCHECK --interval=30s --timeout=10s CMD curl --fail 'http://localhost:${POR
 VOLUME ["/var/jenkins_home/logs", "/var/jenkins_home/cache"]
 VOLUME ["/var/jenkins_home/jobs", "/var/jenkins_home/jenkins-jobs"]
 VOLUME ["/var/jenkins_home/secrets"]
+
+EXPOSE ${PORT} 8081

@@ -15,7 +15,7 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 8080
-    - name: tcp-agent
-      port: 50000
+    - name: tcp-monitoring
+      port: 8081
       protocol: TCP
-      targetPort: 50000
+      targetPort: 8081

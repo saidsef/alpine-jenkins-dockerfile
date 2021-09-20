@@ -32,6 +32,9 @@ def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 hudsonRealm.createAccount('admin', password)
 hudsonRealm.createAccount('saidsef', password)
 instance.setSecurityRealm(hudsonRealm)
+instance.setNumExecutors(1)
+// instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
+instance.setSlaveAgentPort(-1);
 instance.save()
 
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()

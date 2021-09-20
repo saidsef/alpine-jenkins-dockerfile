@@ -38,9 +38,6 @@ spec:
             - protocol: TCP
               containerPort: 8081
               name: tcp-prometheus
-            - protocol: TCP
-              containerPort: 50000
-              name: tcp-agent
           volumeMounts:
             - name: storage
               mountPath: /var/jenkins_home/logs

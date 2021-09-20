@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-TAG=$1
+TAG=${$1:-latest}
 
 function usage {
   echo """
@@ -12,7 +12,7 @@ function usage {
 
 function build {
   echo "Build container"
-  docker build --build-arg "TAG=${TAG}" -t docker.io/saidsef/${PWD##*/}:${TAG} .
+  docker build --build-arg "BUILD_ID=${TAG}" -t docker.io/saidsef/${PWD##*/}:${TAG} .
 }
 
 function push {

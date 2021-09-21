@@ -25,7 +25,6 @@ on:
 env:
   REGISTRY: docker.io
   OWNER: ${{ github.repository_owner }}
-  REPO_NAME: ${{ PWD##*/ }}
 
 jobs:
   build:
@@ -37,6 +36,7 @@ jobs:
       run: |
         echo "TAG=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
         echo "DATE=v$(echo `date +'%Y.%m'`)" >> $GITHUB_ENV
+        echo "REPO_NAME=$(echo ${PWD##*/})" >> $GITHUB_ENV
     - name: Login to DockerHub
       uses: docker/login-action@v1
       if: success()

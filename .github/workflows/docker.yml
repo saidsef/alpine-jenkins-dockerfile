@@ -25,7 +25,7 @@ on:
 env:
   REGISTRY: docker.io
   OWNER: ${{ github.repository_owner }}
-  REPO_NAME: ${PWD##*/}
+  REPO_NAME: ${{ PWD##*/ }}
 
 jobs:
   build:

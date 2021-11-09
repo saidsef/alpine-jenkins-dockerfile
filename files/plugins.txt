@@ -100,6 +100,7 @@ groovy-postbuild
 h2-api
 handlebars
 handy-uri-templates-2-api
+hashicorp-vault-plugin
 htmlpublisher
 jackson2-api
 javadoc

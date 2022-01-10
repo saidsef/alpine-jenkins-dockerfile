@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-TAG=${$1:-latest}
+TAG=$1
 
 function usage {
   echo """

@@ -83,7 +83,6 @@ extended-choice-parameter
 extensible-choice-parameter
 external-monitor-job
 favorite
-folders
 git
 git-changelog
 git-client

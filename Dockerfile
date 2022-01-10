@@ -30,7 +30,7 @@ RUN apk --no-cache add curl graphviz && \
 USER jenkins
 
 # Install plugins
-RUN /bin/jenkins-plugin-cli < /var/jenkins_home/plugins.txt
+RUN /bin/jenkins-plugin-cli --plugin-file /var/jenkins_home/plugins.txt
 RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt
 
 # Health check endpoint

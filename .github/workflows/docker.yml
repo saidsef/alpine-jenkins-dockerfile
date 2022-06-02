@@ -31,14 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Set Tag Names
       run: |
         echo "TAG=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
         echo "DATE=v$(echo `date +'%Y.%m'`)" >> $GITHUB_ENV
         echo "REPO_NAME=$(echo ${PWD##*/})" >> $GITHUB_ENV
     - name: Login to DockerHub
-      uses: docker/login-action@v1
+      uses: docker/login-action@v2
       if: success()
       with:
         registry: ${{ env.REGISTRY }}
@@ -46,7 +46,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image - (MAIN)
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v3
       if: success()
       env:
         DOCKER_BUILDKIT: 1
@@ -61,7 +61,7 @@ jobs:
         tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.TAG == 'main' && 'latest' || env.TAG }}
 
     - name: Build and push Docker image - (DATE)
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v3
       if: ${{ github.event_name == 'schedule' || contains(github.ref, 'main') }}
       env:
         DOCKER_BUILDKIT: 1
@@ -85,7 +85,7 @@ jobs:
         output: 'trivy-results.sarif'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v2
       if: success()
       with:
         sarif_file: 'trivy-results.sarif'
@@ -115,8 +115,13 @@ jobs:
     needs: [build, k8s-test]
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v2
-    - uses: hmarr/auto-approve-action@v2
+    - name: Auto Approve PR
+      uses: actions/github-script@v6
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
+       script: |
+        github.rest.pulls.createReview({
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          pull_number: context.issue.number,
+          event: "APPROVE"
+        })

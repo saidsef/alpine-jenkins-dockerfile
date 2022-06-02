@@ -18,4 +18,4 @@ spec:
     - name: tcp-monitoring
       port: 8081
       protocol: TCP
-      targetPort: 8081
+      targetPort: tcp-jenkins

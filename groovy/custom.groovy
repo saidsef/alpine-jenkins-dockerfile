@@ -5,21 +5,17 @@
 import jenkins.model.*
 import hudson.model.*
 import hudson.security.*
-import jenkins.security.s2m.AdminWhitelistRule
 import hudson.security.csrf.DefaultCrumbIssuer
 import hudson.extension.*
-
-Jenkins.instance.getInjector().getInstance(AdminWhitelistRule.class).setMasterKillSwitch(false)
 
 def instance = Jenkins.getInstance()
 def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
 def host     = System.getenv("JENKINS_HOSTNAME") ?: InetAddress.localHost.hostAddress.toString()
-def port     = System.getenv("JENKINS_PORT") ?: "8080".toString()
 
 // email parameters
 def jenkinsParameters = [
   email:  "Mr Jenkins <jenkins@${host}>",
-  url:    "http://${host}:${port}/"
+  url:    "http://${host}/"
 ]
 
 // set Jenkins Admin URL and email
@@ -54,6 +50,7 @@ matrix.add(Jenkins.ADMINISTER, "saidsef")
 instance.setAuthorizationStrategy(matrix)
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
+instance.reload()
 
 try {
   // Updated Theme

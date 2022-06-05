@@ -18,7 +18,9 @@
 		"MS-CST-E.vscode-devskim",
 		"GitHub.codespaces",
 		"ms-vscode-remote.remote-containers",
-		"ms-vscode-remote.remote-ssh"
+		"ms-vscode-remote.remote-ssh",
+		"ms-kubernetes-tools.vscode-kubernetes-tools",
+		"redhat.vscode-yaml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -30,6 +32,7 @@
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 	"features": {
+		"kubectl-helm-minikube": "1.21",
 		"git": "latest"
 	}
 }

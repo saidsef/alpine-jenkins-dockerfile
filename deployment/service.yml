@@ -14,8 +14,8 @@ spec:
     - name: tcp-jenkins
       port: 80
       protocol: TCP
-      targetPort: 8080
+      targetPort: tcp-jenkins
     - name: tcp-monitoring
       port: 8081
       protocol: TCP
-      targetPort: tcp-jenkins
+      targetPort: tcp-prometheus

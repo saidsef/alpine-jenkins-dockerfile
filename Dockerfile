@@ -1,7 +1,7 @@
 FROM docker.io/jenkins/jenkins:alpine
 
 # Set labels
-LABEL version="2.6"
+LABEL version="3.6"
 LABEL maintainer="Said Sef said@saidsef.co.uk (saidsef.co.uk/)"
 LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 

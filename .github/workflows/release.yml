@@ -12,6 +12,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: ${{ contains(github.ref, 'main') }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -79,12 +80,12 @@ jobs:
             } catch (e) {
               console.log(e.status);
             } finally {
-              for (let file of await fs.readdir('./deployment')) {
+              for (let file of await fs.readdir('./deployment/base')) {
                 await github.rest.repos.uploadReleaseAsset({
                   owner, repo,
                   release_id: ${{ steps.release.outputs.result }},
                   name: file,
-                  data: await fs.readFile(`./deployment/${file}`)
+                  data: await fs.readFile(`./deployment/base/${file}`)
                 })
               }
             }

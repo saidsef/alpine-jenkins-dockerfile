@@ -60,6 +60,8 @@ jobs:
         pull: true
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.TAG == 'main' && 'latest' || env.TAG }}
+        cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.TAG == 'main' && 'latest' || env.TAG }}
+        cache-to: type=inline
 
     - name: Build and push Docker image - (DATE)
       uses: docker/build-push-action@v3
@@ -75,6 +77,8 @@ jobs:
         pull: true
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.DATE }}
+        cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.DATE }}
+        cache-to: type=inline
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master

@@ -21,6 +21,7 @@ on:
       - ".github/workflows/docker.yml"
   schedule:
     - cron: '0 7 * */1 1'
+  workflow_dispatch:
 
 env:
   REGISTRY: docker.io
@@ -108,7 +109,7 @@ jobs:
           fi
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
-          kubectl get all -n $NS
+          kubectl get all -A
 
   auto-approve:
     runs-on: ubuntu-latest

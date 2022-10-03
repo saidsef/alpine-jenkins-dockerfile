@@ -21,6 +21,7 @@ on:
       - ".github/workflows/docker.yml"
   schedule:
     - cron: '0 7 * */1 1'
+  workflow_dispatch:
 
 env:
   REGISTRY: docker.io
@@ -59,6 +60,8 @@ jobs:
         pull: true
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.TAG == 'main' && 'latest' || env.TAG }}
+        cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.TAG == 'main' && 'latest' || env.TAG }}
+        cache-to: type=inline
 
     - name: Build and push Docker image - (DATE)
       uses: docker/build-push-action@v3
@@ -74,6 +77,8 @@ jobs:
         pull: true
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.DATE }}
+        cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.REPO_NAME }}:${{ env.DATE }}
+        cache-to: type=inline
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
@@ -96,7 +101,7 @@ jobs:
     if: ${{ ! contains(github.ref, 'main') && github.event_name != 'schedule' }}
     steps:
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.3.0
+        uses: helm/kind-action@v1.4.0
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run K8s test
@@ -108,7 +113,7 @@ jobs:
           fi
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
-          kubectl get all -n $NS
+          kubectl get all -A
 
   auto-approve:
     runs-on: ubuntu-latest

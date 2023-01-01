@@ -1,12 +1,15 @@
 #!groovy
 // https://mrooding.me/dockerized-jenkins-2-on-google-cloud-platform-34747725e786
 // https://go.cloudbees.com/docs/cloudbees-documentation/admin-instance/setup/
+// move to new format: https://plugins.jenkins.io/role-strategy/
 
-import jenkins.model.*
+import hudson.extension.*
 import hudson.model.*
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
-import hudson.extension.*
+import jenkins.model.*
+import org.jenkinsci.plugins.matrixauth.AuthorizationType
+import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
 def instance = Jenkins.getInstance()
 def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
@@ -15,7 +18,7 @@ def host     = System.getenv("JENKINS_HOSTNAME") ?: InetAddress.localHost.hostAd
 // email parameters
 def jenkinsParameters = [
   email:  "Mr Jenkins <jenkins@${host}>",
-  url:    "http://${host}/"
+  url:    "https://${host}/"
 ]
 
 // set Jenkins Admin URL and email
@@ -29,7 +32,6 @@ hudsonRealm.createAccount('admin', password)
 hudsonRealm.createAccount('saidsef', password)
 instance.setSecurityRealm(hudsonRealm)
 instance.setNumExecutors(1)
-// instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 instance.setSlaveAgentPort(-1);
 instance.save()
 
@@ -39,14 +41,9 @@ instance.setAuthorizationStrategy(strategy)
 instance.save()
 
 def matrix = new GlobalMatrixAuthorizationStrategy()
-matrix.add(Jenkins.ADMINISTER, "admin")
-matrix.add(Jenkins.READ,'authenticated')
-matrix.add(Item.READ,'authenticated')
-matrix.add(Item.DISCOVER,'authenticated')
-matrix.add(Item.CANCEL,'authenticated')
-matrix.add(Item.READ,'anonymous')
+matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'admin'))
 // info found from http://javadoc.jenkins-ci.org/hudson/security/class-use/Permission.html#jenkins.slaves
-matrix.add(Jenkins.ADMINISTER, "saidsef")
+matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'saidsef'))
 instance.setAuthorizationStrategy(matrix)
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()

@@ -6,6 +6,13 @@ resources:
 - ../base/jenkins.yml
 - ../base/service.yml
 - ../base/ingress.yml
+- ../base/sa.yml
+- ../base/role.yml
+- ../base/role-binding.yml
+
+commonAnnotations:
+  app.kubernetes.io/managed-by: kustomizer
+  app.kubernetes.io/part-of: preview
 
 images:
 - name: jenkins-main
@@ -38,4 +45,4 @@ patches:
   patch: |-
     - op: replace
       path: /spec/rules/0/host
-      value: jenkins.saidsef.co.uk
+      value: preview.saidsef.co.uk

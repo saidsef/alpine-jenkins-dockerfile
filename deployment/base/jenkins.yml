@@ -2,34 +2,52 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: jenkins-main
+  name: jenkins
   labels:
-    name: jenkins-main
-    app: jenkins-main
+    name: jenkins
+    app: jenkins
 spec:
   revisionHistoryLimit: 1
-  serviceName: jenkins-main
+  serviceName: jenkins
   replicas: 1
   selector:
     matchLabels:
-      app: jenkins-main
+      app: jenkins
   template:
     metadata:
       labels:
-        app: jenkins-main
+        app: jenkins
     spec:
-      shareProcessNamespace: true
+      shareProcessNamespace: false
+      serviceAccountName: jenkins
+      enableServiceLinks: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       initContainers:
-        - name: jenkins-init
-          image: busybox:latest
+        - name: init
+          image: docker.io/busybox:stable
           command: ["sh", "-c", "chmod -R 777 /var/jenkins_home"]
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: storage
               mountPath: /var/jenkins_home
+          resources:
+            limits:
+              cpu: 100m
+              memory: 50Mi
+            requests:
+              cpu: 100m
+              memory: 50Mi
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - CHOWN
       containers:
-        - name: jenkins-main
-          image: docker.io/saidsef/alpine-jenkins-dockerfile:latest
+        - name: jenkins
+          image: docker.io/saidsef/alpine-jenkins-dockerfile:v2022.12
           imagePullPolicy: Always
           ports:
             - protocol: TCP
@@ -93,10 +111,7 @@ spec:
                 - ALL
               add:
                 - NET_BIND_SERVICE
-                - NET_RAW
-                - SYS_TIME
       volumes:
         - name: storage
-          hostPath:
-            path: /mnt/jenkins
-            type: DirectoryOrCreate
+          emptyDir:
+            sizeLimit: 3Gi

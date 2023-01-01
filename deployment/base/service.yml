@@ -9,7 +9,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: jenkins-main
+    app: jenkins
   ports:
     - name: tcp-jenkins
       port: 80

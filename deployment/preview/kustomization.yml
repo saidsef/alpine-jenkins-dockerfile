@@ -12,7 +12,6 @@ resources:
 
 commonAnnotations:
   app.kubernetes.io/managed-by: kustomizer
-  app.kubernetes.io/part-of: preview
 
 images:
 - name: jenkins-main

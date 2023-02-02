@@ -93,7 +93,6 @@ gitlab-api
 golang
 gradle
 h2-api
-handlebars
 handy-uri-templates-2-api
 htmlpublisher
 jackson2-api
@@ -103,8 +102,6 @@ jenkins-design-language
 jira
 job-dsl
 jobConfigHistory
-jquery
-jquery-detached
 jsch
 junit
 kubernetes
@@ -120,7 +117,6 @@ matrix-project
 maven-plugin
 metrics
 miniorange-saml-sp
-momentjs
 nexus-artifact-uploader
 node-iterator-api
 nodejs

@@ -6,17 +6,14 @@
  * by saidsef@gmail.com
  */
 
-def now = new Date()
-
 pipeline {
   agent any
   options {
-    skipStagesAfterUnstable()
     disableConcurrentBuilds()
     timestamps()
   }
   environment {
-    TAG = "${now.format("Y.M")}"
+    TAG = "${new Date().format("Y.M")}"
   }
   stages {
     stage("Checkout") {

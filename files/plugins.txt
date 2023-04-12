@@ -124,7 +124,6 @@ packer
 pam-auth
 Parameterized-Remote-Trigger
 parameterized-trigger
-perfpublisher
 permissive-script-security
 pipeline-aggregator-view
 pipeline-aws

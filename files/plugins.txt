@@ -56,7 +56,6 @@ command-launcher
 conditional-buildstep
 config-file-provider
 configuration-as-code
-convert-to-pipeline
 credentials
 credentials-binding
 crowd2

@@ -17,7 +17,7 @@ commonAnnotations:
 images:
 - name: jenkins-main
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
-  newTag: v2022.12
+  newTag: v2023.04
 
 vars:
 - fieldref: {}

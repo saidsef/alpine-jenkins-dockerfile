@@ -47,7 +47,7 @@ spec:
                 - CHOWN
       containers:
         - name: jenkins
-          image: docker.io/saidsef/alpine-jenkins-dockerfile:v2022.12
+          image: docker.io/saidsef/alpine-jenkins-dockerfile:v2023.04
           imagePullPolicy: Always
           ports:
             - protocol: TCP

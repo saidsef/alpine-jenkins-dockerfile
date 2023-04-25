@@ -5,7 +5,7 @@ on:
       - Tagging
     types:
       - completed
-    branch:
+    branches:
       - main
   workflow_dispatch:
 

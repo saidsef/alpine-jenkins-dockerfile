@@ -24,7 +24,6 @@ spec:
       shareProcessNamespace: false
       serviceAccountName: jenkins
       enableServiceLinks: false
-      automountServiceAccountToken: false
       securityContext:
         seccompProfile:
           type: RuntimeDefault

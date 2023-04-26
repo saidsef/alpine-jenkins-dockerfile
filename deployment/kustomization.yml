@@ -15,9 +15,9 @@ commonAnnotations:
   app.kubernetes.io/part-of: jenkins
 
 images:
-- name: jenkins-main
+- name: jenkins
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
-  newTag: v2022.12
+  newTag: v2023.04
 
 vars:
 - fieldref: {}

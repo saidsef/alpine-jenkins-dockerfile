@@ -3,12 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ../base/jenkins.yml
-- ../base/service.yml
-- ../base/ingress.yml
-- ../base/sa.yml
-- ../base/role.yml
-- ../base/role-binding.yml
+- ../base/
 
 commonAnnotations:
   app.kubernetes.io/managed-by: kustomizer
@@ -28,14 +23,6 @@ patchesJSON6902:
     - op: replace
       path: /spec/template/spec/containers/0/image
       value: docker.io/saidsef/alpine-jenkins-dockerfile:merge
-
-vars:
-- fieldref: {}
-  name: HOST
-  objref:
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    name: jenkins
 
 patches:
 - target:

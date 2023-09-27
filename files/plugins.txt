@@ -88,6 +88,7 @@ github
 github-api
 github-branch-source
 gitlab-api
+gitlab-plugin
 golang
 gradle
 h2-api
@@ -106,6 +107,7 @@ kubernetes
 kubernetes-client-api
 kubernetes-credentials-provider
 ldap
+locale
 lockable-resources
 log-parser
 mailer

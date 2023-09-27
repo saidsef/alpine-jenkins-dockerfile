@@ -22,7 +22,7 @@ metadata:
       }
 spec:
   rules:
-  - host: $(HOST)
+  - host: jenkins
     http:
       paths:
       - path: /

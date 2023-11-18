@@ -167,7 +167,6 @@ ssh-credentials
 statistics-gatherer
 structs
 subversion
-teams-webhook-trigger
 templating-engine
 terraform
 thinBackup

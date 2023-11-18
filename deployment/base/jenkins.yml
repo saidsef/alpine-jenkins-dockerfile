@@ -30,7 +30,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: jenkins
-          image: docker.io/saidsef/alpine-jenkins-dockerfile:v2023.04
+          image: docker.io/saidsef/alpine-jenkins-dockerfile:v2023.11
           imagePullPolicy: Always
           ports:
             - protocol: TCP

@@ -1,8 +1,8 @@
 ---
 startDelaySeconds: 0
 ssl: false
-lowercaseOutputName: true
-lowercaseOutputLabelNames: true
+lowercaseOutputName: false
+lowercaseOutputLabelNames: false
 
 rules:
 - pattern: ".*"

@@ -50,7 +50,7 @@ instance.save()
 instance.reload()
 
 try {
-  // Updated Theme
+  // Update Theme
   def r = new Random()
   def ipAddress = InetAddress.localHost.hostAddress
   def colours = ['neo-light']

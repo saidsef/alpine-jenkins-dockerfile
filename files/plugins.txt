@@ -58,7 +58,6 @@ config-file-provider
 configuration-as-code
 credentials
 credentials-binding
-crowd2
 cucumber-reports
 cucumber-testresult-plugin
 dashboard-view

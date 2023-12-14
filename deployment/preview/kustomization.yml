@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -13,22 +12,21 @@ images:
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
   newTag: merge
 
-patchesJSON6902:
-- target:
-    group: apps
-    version: v1
-    kind: StatefulSet
-    name: jenkins-main
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: docker.io/saidsef/alpine-jenkins-dockerfile:merge
 
 patches:
-- target:
-    kind: Ingress
-    name: jenkins
-  patch: |-
+- patch: |-
     - op: replace
       path: /spec/rules/0/host
       value: preview.saidsef.co.uk
+  target:
+    kind: Ingress
+    name: jenkins
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: docker.io/saidsef/alpine-jenkins-dockerfile:merge
+  target:
+    group: apps
+    kind: StatefulSet
+    name: jenkins-main
+    version: v1

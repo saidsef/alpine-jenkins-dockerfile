@@ -58,10 +58,10 @@ config-file-provider
 configuration-as-code
 credentials
 credentials-binding
-crowd2
 cucumber-reports
 cucumber-testresult-plugin
 dashboard-view
+datadog
 delivery-pipeline-plugin
 dependency-check-jenkins-plugin
 display-url-api
@@ -99,6 +99,7 @@ jaxb
 jdk-tool
 jenkins-design-language
 jira
+jnr-posix-api
 job-dsl
 jobConfigHistory
 jsch
@@ -160,6 +161,7 @@ servicenow-devops
 simple-theme-plugin
 slack
 snakeyaml-api
+snyk-security-scanner
 sonargraph-integration
 splunk-devops
 sse-gateway

@@ -11,4 +11,4 @@ commonAnnotations:
 images:
 - name: jenkins
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
-  newTag: v2023.12
+  newTag: v2024.01

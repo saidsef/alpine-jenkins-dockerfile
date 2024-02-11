@@ -77,6 +77,7 @@ email-ext
 extensible-choice-parameter
 external-monitor-job
 favorite
+gcp-secrets-manager-credentials-provider
 git
 git-changelog
 git-client
@@ -90,6 +91,8 @@ github-branch-source
 gitlab-api
 gitlab-plugin
 golang
+google-kubernetes-engine
+google-oauth-plugin
 gradle
 h2-api
 handy-uri-templates-2-api
@@ -121,6 +124,7 @@ miniorange-saml-sp
 nexus-artifact-uploader
 node-iterator-api
 nodejs
+oauth-credentials
 packer
 pam-auth
 Parameterized-Remote-Trigger

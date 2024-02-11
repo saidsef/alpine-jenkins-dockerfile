@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - base/
+- nginx/
 
 commonAnnotations:
   app.kubernetes.io/managed-by: kustomizer
@@ -11,4 +12,4 @@ commonAnnotations:
 images:
 - name: jenkins
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
-  newTag: v2024.01
+  newTag: v2024.02

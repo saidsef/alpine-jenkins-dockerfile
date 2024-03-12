@@ -68,4 +68,5 @@ try {
 
 println "#########################################################"
 println "--> created local user 'admin' with password: ${password}"
+println "--> IP address ${ipAddress}"
 println "#########################################################"

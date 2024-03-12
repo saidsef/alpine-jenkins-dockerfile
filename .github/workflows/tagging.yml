@@ -10,7 +10,7 @@ on:
       - CI
     types:
       - completed
-    branch:
+    branches:
       - main
   workflow_dispatch:
 

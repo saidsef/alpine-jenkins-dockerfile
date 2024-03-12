@@ -11,7 +11,7 @@ spec:
   selector:
     app: jenkins
   ports:
-    - name: tcp-jenkins
+    - name: tcp
       port: 80
       protocol: TCP
-      targetPort: tcp-jenkins
+      targetPort: tcp

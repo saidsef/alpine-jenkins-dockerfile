@@ -41,7 +41,6 @@ bouncycastle-api
 branch-api
 build-history-manager
 build-history-metrics-plugin
-build-monitor-plugin
 build-time-blame
 build-timeout
 build-timestamp
@@ -153,7 +152,6 @@ pipeline-utility-steps
 plain-credentials
 pubsub-light
 pull-request-monitoring
-python
 resource-disposer
 role-strategy
 run-condition

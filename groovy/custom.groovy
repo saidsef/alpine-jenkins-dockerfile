@@ -8,6 +8,7 @@ import hudson.model.*
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
 import jenkins.model.*
+import java.security.SecureRandom
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
 import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
@@ -21,52 +22,74 @@ def jenkinsParameters = [
   url:    "https://${host}/"
 ]
 
-// set Jenkins Admin URL and email
-def jenkinsLocationConfiguration = JenkinsLocationConfiguration.get()
-jenkinsLocationConfiguration.setUrl(jenkinsParameters.url)
-jenkinsLocationConfiguration.setAdminAddress(jenkinsParameters.email)
-jenkinsLocationConfiguration.save()
-
-def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-hudsonRealm.createAccount('admin', password)
-hudsonRealm.createAccount('saidsef', password)
-instance.setSecurityRealm(hudsonRealm)
-instance.setNumExecutors(1)
-instance.setSlaveAgentPort(-1);
-instance.save()
-
-def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-strategy.setAllowAnonymousRead(false)
-instance.setAuthorizationStrategy(strategy)
-instance.save()
-
-def matrix = new GlobalMatrixAuthorizationStrategy()
-matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'admin'))
-// info found from http://javadoc.jenkins-ci.org/hudson/security/class-use/Permission.html#jenkins.slaves
-matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'saidsef'))
-instance.setAuthorizationStrategy(matrix)
-instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
-instance.save()
-instance.reload()
+try {
+  // set Jenkins Admin URL and email
+  JenkinsLocationConfiguration jlc = JenkinsLocationConfiguration.get()
+  jlc.setUrl(jenkinsParameters.url)
+  jlc.setAdminAddress(jenkinsParameters.email)
+  jlc.save()
+} catch (Exception e) {
+  println "--> Jenkins Admin URL and email failed"
+  println "${e}"
+}
 
 try {
-  // Update Theme
-  def r = new Random()
-  def ipAddress = InetAddress.localHost.hostAddress
-  def colours = ['neo-light']
-  def colour = colours.get(r.nextInt(colours.size()))
-
-  def theme    = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
-  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement("https://tobix.github.io/jenkins-neo2-theme/dist/${colour}.css")])
+  // set Hudson Private Security Realm
+  def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+  hudsonRealm.createAccount('admin', password)
+  hudsonRealm.createAccount('saidsef', password)
+  instance.setSecurityRealm(hudsonRealm)
+  instance.setNumExecutors(1)
+  instance.setSlaveAgentPort(-1)
   instance.save()
+} catch (Exception e) {
+  println "--> Hudson Private Security Realm failed"
+  println "${e}"
+}
+
+try {
+  // set Full Control Once Logged In Auth
+  def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+  strategy.setAllowAnonymousRead(false)
+  instance.setAuthorizationStrategy(strategy)
+  instance.save()
+} catch (Exception e) {
+  println "--> Full Control Once Logged In Auth failed"
+  println "${e}"
+}
+
+try {
+  // set Global Matrix Auth
+  def matrix = new GlobalMatrixAuthorizationStrategy()
+  matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'admin'))
+  // info found from http://javadoc.jenkins-ci.org/hudson/security/class-use/Permission.html#jenkins.slaves
+  matrix.add(Jenkins.ADMINISTER, new PermissionEntry(AuthorizationType.USER, 'saidsef'))
+  instance.setAuthorizationStrategy(matrix)
+  instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
+  instance.save()
+  instance.reload()
+} catch (Exception e) {
+  println "--> Global Matrix Auth failed"
+  println "${e}"
+}
+
+try {
+  // Update Theme and Style Sheet
+  SecureRandom r = new SecureRandom()
+  List<String> colours = ['green', 'teal', 'blue', 'grey', 'blue-grey']
+  String colour = colours.get(r.nextInt(colours.size()))
+
+  org.codefirst.SimpleThemeDecorator theme = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
+  String url = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
+  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement(url)])
 
   println "--> updating jenkins theme to: ${colour}"
-} catch(Exception e) {
+} catch (Exception e) {
   println "--> styling failed"
   println "${e}"
 }
 
 println "#########################################################"
 println "--> created local user 'admin' with password: ${password}"
-println "--> IP address ${ipAddress}"
+println "--> IP address ${jenkinsParameters.url}"
 println "#########################################################"

@@ -75,6 +75,7 @@ Please read the official [Contribution Guide](./CONTRIBUTING.md) for more inform
 If you encounter issues while starting or accessing Jenkins, here are some common troubleshooting steps:
 
 ### Unable to Access Jenkins at `http://127.0.0.1:8080` or `http://localhost:8080`
+
 - Ensure the Docker container is running. You can verify this by running:
   ```bash
   docker ps
@@ -87,6 +88,7 @@ If you encounter issues while starting or accessing Jenkins, here are some commo
   Replace `<container-id>` with the actual container ID from the `docker ps` output.
 
 ### Slow Startup
+
 - Jenkins may take some time to initialize, especially on the first run. Be patient and monitor the logs for progress.
 
 By following these steps, you should be able to resolve most common issues.

@@ -69,3 +69,26 @@ Our latest and greatest source of Jenkins can be found on [GitHub]. Fork us!
 We would :heart: you to contribute by making a [pull request](https://github.com/saidsef/alpine-jenkins-dockerfile/pulls).
 
 Please read the official [Contribution Guide](./CONTRIBUTING.md) for more information on how you can contribute.
+
+## Troubleshooting
+
+If you encounter issues while starting or accessing Jenkins, here are some common troubleshooting steps:
+
+### Unable to Access Jenkins at `http://127.0.0.1:8080` or `http://localhost:8080`
+
+- Ensure the Docker container is running. You can verify this by running:
+  ```bash
+  docker ps
+  ```
+  Look for a container with the name or image `alpine-jenkins-dockerfile`.
+- Check the container logs for any errors:
+  ```bash
+  docker logs <container-id>
+  ```
+  Replace `<container-id>` with the actual container ID from the `docker ps` output.
+
+### Slow Startup
+
+- Jenkins may take some time to initialize, especially on the first run. Be patient and monitor the logs for progress.
+
+By following these steps, you should be able to resolve most common issues.

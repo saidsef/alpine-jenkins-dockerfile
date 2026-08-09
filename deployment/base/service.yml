@@ -4,12 +4,14 @@ kind: Service
 metadata:
   name: jenkins
   labels:
-    name: jenkins
-    app: jenkins
+    app.kubernetes.io/name: jenkins
+    app.kubernetes.io/instance: jenkins
+    app.kubernetes.io/component: controller
 spec:
   type: ClusterIP
   selector:
-    app: jenkins
+    app.kubernetes.io/name: jenkins
+    app.kubernetes.io/instance: jenkins
   ports:
     - name: tcp
       port: 80

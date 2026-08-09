@@ -5,11 +5,16 @@ resources:
 - ../base/
 - ../nginx/
 
-commonAnnotations:
-  app.kubernetes.io/managed-by: kustomizer
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: jenkins
+      app.kubernetes.io/managed-by: kustomize
+      app.kubernetes.io/version: merge
+    includeSelectors: false
+    includeTemplates: true
 
 images:
-- name: jenkins-main
+- name: docker.io/saidsef/alpine-jenkins-dockerfile
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
   newTag: merge
 
@@ -29,5 +34,18 @@ patches:
   target:
     group: apps
     kind: StatefulSet
-    name: jenkins-main
+    name: jenkins
     version: v1
+
+# Runs after the patch above, so it picks up the preview host, not the base one.
+replacements:
+- source:
+    kind: Ingress
+    name: jenkins
+    fieldPath: spec.rules.0.host
+  targets:
+  - select:
+      kind: StatefulSet
+      name: jenkins
+    fieldPaths:
+    - spec.template.spec.containers.[name=jenkins].env.[name=JENKINS_HOSTNAME].value

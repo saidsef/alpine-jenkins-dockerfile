@@ -126,7 +126,6 @@ nodejs
 oauth-credentials
 packer
 pam-auth
-Parameterized-Remote-Trigger
 parameterized-trigger
 permissive-script-security
 pipeline-aggregator-view
@@ -168,7 +167,6 @@ sonargraph-integration
 splunk-devops
 sse-gateway
 ssh-credentials
-statistics-gatherer
 structs
 subversion
 templating-engine

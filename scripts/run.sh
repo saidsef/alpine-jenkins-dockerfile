@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 set -ex
 
-TAG=${$1:-latest}
-BASE=${$2:-$PWD}
+TAG=${1:-latest}
+BASE=${2:-$PWD}
 
 function usage {
   echo """

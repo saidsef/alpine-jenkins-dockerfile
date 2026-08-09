@@ -13,8 +13,10 @@ import org.jenkinsci.plugins.matrixauth.AuthorizationType
 import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
 def instance = Jenkins.getInstance()
-def password = System.getenv("JENKINS_ADMIN_PASSWORD") ?: UUID.randomUUID().toString()
-def host     = System.getenv("JENKINS_HOSTNAME") ?: InetAddress.localHost.hostAddress.toString()
+def envPassword = System.getenv("JENKINS_ADMIN_PASSWORD")
+def generated   = !envPassword?.trim()
+def password    = generated ? UUID.randomUUID().toString() : envPassword
+def host        = System.getenv("JENKINS_HOSTNAME") ?: InetAddress.localHost.hostAddress.toString()
 
 // email parameters
 def jenkinsParameters = [
@@ -90,6 +92,11 @@ try {
 }
 
 println "#########################################################"
-println "--> created local user 'admin' with password: ${password}"
+if (generated) {
+  println "--> created local users 'admin' and 'saidsef' with generated password: ${password}"
+  println "--> generated because JENKINS_ADMIN_PASSWORD was unset - rotate it after first login"
+} else {
+  println "--> created local users 'admin' and 'saidsef' with the password from JENKINS_ADMIN_PASSWORD"
+}
 println "--> IP address ${jenkinsParameters.url}"
 println "#########################################################"

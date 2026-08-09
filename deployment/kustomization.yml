@@ -5,11 +5,27 @@ resources:
 - base/
 - nginx/
 
-commonAnnotations:
-  app.kubernetes.io/managed-by: kustomizer
-  app.kubernetes.io/part-of: jenkins
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: jenkins
+      app.kubernetes.io/managed-by: kustomize
+      app.kubernetes.io/version: v2026.07
+    includeSelectors: false
+    includeTemplates: true
 
 images:
 - name: jenkins
   newName: docker.io/saidsef/alpine-jenkins-dockerfile
-  newTag: v2026.06
+  newTag: v2026.07
+
+replacements:
+- source:
+    kind: Ingress
+    name: jenkins
+    fieldPath: spec.rules.0.host
+  targets:
+  - select:
+      kind: StatefulSet
+      name: jenkins
+    fieldPaths:
+    - spec.template.spec.containers.[name=jenkins].env.[name=JENKINS_HOSTNAME].value

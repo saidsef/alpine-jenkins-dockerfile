@@ -2,6 +2,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: jenkins
+  labels:
+    app.kubernetes.io/name: jenkins
+    app.kubernetes.io/instance: jenkins
+    app.kubernetes.io/component: controller
 rules:
   - apiGroups: [""]
     resources: ["secrets", "configmaps", "pods"]

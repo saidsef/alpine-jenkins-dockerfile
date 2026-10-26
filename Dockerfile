@@ -7,10 +7,10 @@ LABEL description="Containerised Jenkins CI/CD Server With Plugins"
 
 ARG BUILD_ID=""
 
-ENV BUILD_ID ${BUILD_ID:-'0.0.0.0-boo!'}
-ENV PROMETHEUS_JMX_JAR_VERSION 0.19.0
-ENV PORT ${PORT:-8080}
-ENV JENKINS_HOSTNAME ${JENKINS_HOSTNAME:-"jenkins.saidsef.co.uk"}
+ENV BUILD_ID=${BUILD_ID:-'0.0.0.0-boo!'}
+ENV PROMETHEUS_JMX_JAR_VERSION=0.19.0
+ENV PORT=${PORT:-8080}
+ENV JENKINS_HOSTNAME=${JENKINS_HOSTNAME:-"jenkins.saidsef.co.uk"}
 
 # Copy plugins, groovy and css to container
 COPY files/plugins.txt /var/jenkins_home/plugins.txt

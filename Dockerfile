@@ -35,7 +35,7 @@ USER jenkins
 RUN /bin/jenkins-plugin-cli --plugin-file /var/jenkins_home/plugins.txt
 RUN echo ${BUILD_ID} | tee -a /tmp/build_id.txt
 
-ENV JAVA_OPTS="-Dhudson.footerURL=https://saidsef.co.uk -Djenkins.install.runSetupWizard=false -Djenkins.telemetry.enabled=false -javaagent:/usr/share/jenkins/jmx_prometheus_javaagent.jar=8081:/var/jenkins_home/prometheus-jmx-config.yaml -XX:InitialRAMPercentage=40 -XX:MaxRAMPercentage=60 -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -Xss2048k -XX:MaxDirectMemorySize=256m"
+ENV JAVA_OPTS="-Dhudson.footerURL=https://saidsef.co.uk -Djenkins.install.runSetupWizard=false -Dhudson.model.UsageStatistics.disabled=true -javaagent:/usr/share/jenkins/jmx_prometheus_javaagent.jar=8081:/var/jenkins_home/prometheus-jmx-config.yaml -XX:InitialRAMPercentage=40 -XX:MaxRAMPercentage=60 -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -Xss2048k -XX:MaxDirectMemorySize=256m"
 
 # Health check endpoint
 HEALTHCHECK --interval=60s --timeout=10s CMD curl --fail "http://localhost:${PORT}/login?from=login" || exit 1

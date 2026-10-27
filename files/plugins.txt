@@ -42,6 +42,7 @@ credentials
 credentials-binding
 cucumber-reports
 cucumber-testresult-plugin
+dark-theme
 dashboard-view
 datadog
 delivery-pipeline-plugin
@@ -145,7 +146,6 @@ scalable-amazon-ecs
 scm-api
 script-security
 servicenow-devops
-simple-theme-plugin
 slack
 snakeyaml-api
 snyk-security-scanner
@@ -158,6 +158,7 @@ structs
 subversion
 templating-engine
 terraform
+theme-manager
 thinBackup
 throttle-concurrents
 timestamper

@@ -9,9 +9,10 @@ import hudson.plugins.audit_trail.AuditTrailPlugin
 import hudson.plugins.audit_trail.ConsoleAuditLogger
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
+import io.jenkins.plugins.darktheme.DarkThemeSystemManagerFactory
 import io.jenkins.plugins.opentelemetry.JenkinsOpenTelemetryPluginConfiguration
+import io.jenkins.plugins.thememanager.ThemeManagerPageDecorator
 import jenkins.model.*
-import java.security.SecureRandom
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
 import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
@@ -79,16 +80,12 @@ try {
 }
 
 try {
-  // Update Theme and Style Sheet
-  SecureRandom r = new SecureRandom()
-  List<String> colours = ['green', 'teal', 'blue', 'grey', 'blue-grey']
-  String colour = colours.get(r.nextInt(colours.size()))
+  ThemeManagerPageDecorator theme = ThemeManagerPageDecorator.get()
+  theme.setTheme(new DarkThemeSystemManagerFactory())
+  theme.setDisableUserThemes(false)
+  theme.save()
 
-  org.codefirst.SimpleThemeDecorator theme = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
-  String url = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
-  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement(url)])
-
-  println "--> updating jenkins theme to: ${colour}"
+  println "--> jenkins theme set to dark (system)"
 } catch (Exception e) {
   println "--> styling failed"
   println "${e}"

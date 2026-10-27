@@ -108,6 +108,7 @@ nexus-artifact-uploader
 node-iterator-api
 nodejs
 oauth-credentials
+opentelemetry
 packer
 pam-auth
 parameterized-trigger

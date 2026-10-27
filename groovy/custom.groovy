@@ -9,6 +9,7 @@ import hudson.plugins.audit_trail.AuditTrailPlugin
 import hudson.plugins.audit_trail.ConsoleAuditLogger
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
+import io.jenkins.plugins.opentelemetry.JenkinsOpenTelemetryPluginConfiguration
 import jenkins.model.*
 import java.security.SecureRandom
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
@@ -103,6 +104,22 @@ try {
   println "--> audit trail logging to the console"
 } catch (Exception e) {
   println "--> audit trail console logger failed"
+  println "${e}"
+}
+
+try {
+  // The plugin leaves the SDK as a no-op unless its own config names an endpoint,
+  // so OTEL_EXPORTER_OTLP_ENDPOINT on its own does not export anything
+  def otlpEndpoint = System.getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
+  if (otlpEndpoint?.trim()) {
+    JenkinsOpenTelemetryPluginConfiguration otel = JenkinsOpenTelemetryPluginConfiguration.get()
+    otel.setEndpoint(otlpEndpoint)
+    otel.configureOpenTelemetrySdk()
+    otel.save()
+    println "--> opentelemetry exporting to ${otlpEndpoint}"
+  }
+} catch (Exception e) {
+  println "--> opentelemetry endpoint failed"
   println "${e}"
 }
 

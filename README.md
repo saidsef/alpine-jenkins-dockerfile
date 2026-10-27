@@ -77,6 +77,14 @@ echo -n "admin:<api-token>" | base64
 }
 ```
 
+### OpenTelemetry
+
+The [OpenTelemetry](https://plugins.jenkins.io/opentelemetry/) plugin sends build traces, Jenkins metrics and the Jenkins system log to an OTLP endpoint. Pipeline build logs stay in Jenkins. The startup script copies `OTEL_EXPORTER_OTLP_ENDPOINT` into the plugin configuration on every start, and the OpenTelemetry SDK reads the other `OTEL_*` variables, such as `OTEL_METRIC_EXPORT_INTERVAL`, from the container environment. Without the endpoint variable, the plugin does not export anything until an administrator sets an endpoint under **Manage Jenkins** and **System**.
+
+```bash
+docker run -p 8080:8080 -e OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317 docker.io/saidsef/alpine-jenkins-dockerfile:latest
+```
+
 ### Links
 
 - [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)

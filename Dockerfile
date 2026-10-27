@@ -22,8 +22,10 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 USER root
 
+# Each VOLUME path must exist here, or Docker creates it owned by root and Jenkins cannot write to it
 RUN apk --no-cache add curl graphviz && \
     curl -vSL https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/${PROMETHEUS_JMX_JAR_VERSION}/jmx_prometheus_javaagent-${PROMETHEUS_JMX_JAR_VERSION}.jar -o /usr/share/jenkins/jmx_prometheus_javaagent.jar && \
+    mkdir -p /var/jenkins_home/logs /var/jenkins_home/cache /var/jenkins_home/jobs /var/jenkins_home/jenkins-jobs /var/jenkins_home/secrets && \
     chown jenkins:jenkins -R /usr/share/jenkins && \
     chown jenkins:jenkins -R /var/jenkins_home
 

@@ -5,6 +5,8 @@
 
 import hudson.extension.*
 import hudson.model.*
+import hudson.plugins.audit_trail.AuditTrailPlugin
+import hudson.plugins.audit_trail.ConsoleAuditLogger
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
 import jenkins.model.*
@@ -88,6 +90,19 @@ try {
   println "--> updating jenkins theme to: ${colour}"
 } catch (Exception e) {
   println "--> styling failed"
+  println "${e}"
+}
+
+try {
+  // Audit Trail records nothing without a logger, and stdout goes to the container log
+  AuditTrailPlugin audit = instance.getDescriptorByType(AuditTrailPlugin.class)
+  if (!audit.getLoggers().any { it instanceof ConsoleAuditLogger }) {
+    audit.setLoggers(audit.getLoggers() + new ConsoleAuditLogger(ConsoleAuditLogger.Output.STD_OUT, "yyyy-MM-dd HH:mm:ss", "audit"))
+    audit.save()
+  }
+  println "--> audit trail logging to the console"
+} catch (Exception e) {
+  println "--> audit trail console logger failed"
   println "${e}"
 }
 

@@ -8,6 +8,7 @@ ant
 antisamy-markup-formatter
 apache-httpcomponents-client-4-api
 aqua-security-scanner
+audit-trail
 authentication-tokens
 authorize-project
 aws-batch
@@ -27,6 +28,7 @@ build-timestamp
 build-token-root
 build-with-parameters
 claim
+cloudbees-disk-usage-simple
 cloudbees-folder
 clover
 codedeploy
@@ -35,6 +37,7 @@ command-launcher
 conditional-buildstep
 config-file-provider
 configuration-as-code
+coverage
 credentials
 credentials-binding
 cucumber-reports
@@ -67,6 +70,7 @@ git-tag-message
 github
 github-api
 github-branch-source
+github-checks
 gitlab-api
 gitlab-plugin
 golang
@@ -97,6 +101,7 @@ mapdb-api
 matrix-auth
 matrix-project
 maven-plugin
+mcp-server
 metrics
 miniorange-saml-sp
 nexus-artifact-uploader
@@ -114,6 +119,7 @@ pipeline-github
 pipeline-github-lib
 pipeline-githubnotify-step
 pipeline-graph-analysis
+pipeline-graph-view
 pipeline-input-step
 pipeline-maven
 pipeline-milestone-step
@@ -145,6 +151,7 @@ snyk-security-scanner
 sonargraph-integration
 splunk-devops
 sse-gateway
+ssh-agent
 ssh-credentials
 structs
 subversion
@@ -159,6 +166,7 @@ uno-choice
 variant
 view-job-filters
 vsphere-cloud
+warnings-ng
 webhook-step
 workflow-aggregator
 workflow-api

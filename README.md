@@ -55,6 +55,28 @@ Once the service has been successfully deployed, use the following command to ac
 kubectl port-forward <pod-name> 8080:8080
 ```
 
+### MCP server
+
+The [MCP Server](https://plugins.jenkins.io/mcp-server/) plugin serves the Model Context Protocol over Streamable HTTP at `/mcp-server/mcp`. A client authenticates with HTTP Basic, using a Jenkins user name and an API token. A user creates the token from the user menu under **Security** and **Add new token**.
+
+```bash
+echo -n "admin:<api-token>" | base64
+```
+
+```json
+{
+  "servers": {
+    "jenkins": {
+      "type": "http",
+      "url": "http://localhost:8080/mcp-server/mcp",
+      "headers": {
+        "Authorization": "Basic <base64-credentials>"
+      }
+    }
+  }
+}
+```
+
 ### Links
 
 - [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)

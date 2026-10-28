@@ -43,7 +43,6 @@ credentials-binding
 cucumber-reports
 cucumber-testresult-plugin
 dashboard-view
-datadog
 delivery-pipeline-plugin
 dependency-check-jenkins-plugin
 display-url-api

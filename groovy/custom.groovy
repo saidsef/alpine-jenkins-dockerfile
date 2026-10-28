@@ -3,6 +3,7 @@
 // https://go.cloudbees.com/docs/cloudbees-documentation/admin-instance/setup/
 // move to new format: https://plugins.jenkins.io/role-strategy/
 
+import hudson.diagnosis.ReverseProxySetupMonitor
 import hudson.extension.*
 import hudson.model.*
 import hudson.plugins.audit_trail.AuditTrailPlugin
@@ -11,7 +12,7 @@ import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
 import io.jenkins.plugins.opentelemetry.JenkinsOpenTelemetryPluginConfiguration
 import jenkins.model.*
-import java.security.SecureRandom
+import jenkins.security.csp.impl.CspConfiguration
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
 import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
@@ -79,22 +80,6 @@ try {
 }
 
 try {
-  // Update Theme and Style Sheet
-  SecureRandom r = new SecureRandom()
-  List<String> colours = ['green', 'teal', 'blue', 'grey', 'blue-grey']
-  String colour = colours.get(r.nextInt(colours.size()))
-
-  org.codefirst.SimpleThemeDecorator theme = instance.getDescriptorByType(org.codefirst.SimpleThemeDecorator.class)
-  String url = "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-${colour}.css"
-  theme.setElements([new org.jenkinsci.plugins.simpletheme.CssUrlThemeElement(url)])
-
-  println "--> updating jenkins theme to: ${colour}"
-} catch (Exception e) {
-  println "--> styling failed"
-  println "${e}"
-}
-
-try {
   // Audit Trail records nothing without a logger, and stdout goes to the container log
   AuditTrailPlugin audit = instance.getDescriptorByType(AuditTrailPlugin.class)
   if (!audit.getLoggers().any { it instanceof ConsoleAuditLogger }) {
@@ -120,6 +105,24 @@ try {
   }
 } catch (Exception e) {
   println "--> opentelemetry endpoint failed"
+  println "${e}"
+}
+
+try {
+  // Jenkins only reports policy violations until enforcement is on, and it does not block anything
+  GlobalConfiguration.all().get(CspConfiguration).setEnforce(true)
+  println "--> content security policy enforced"
+} catch (Exception e) {
+  println "--> content security policy enforcement failed"
+  println "${e}"
+}
+
+try {
+  // Jenkins also serves the System page at /configure, and this check only passes from /manage. See #171.
+  AdministrativeMonitor.all().get(ReverseProxySetupMonitor).disable(true)
+  println "--> reverse proxy check disabled"
+} catch (Exception e) {
+  println "--> reverse proxy check failed to disable"
   println "${e}"
 }
 

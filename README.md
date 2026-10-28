@@ -93,6 +93,10 @@ The startup script turns on [Content Security Policy](https://www.jenkins.io/doc
 docker run -p 8080:8080 -e JENKINS_JAVA_OPTS=-Djenkins.security.csp.CspHeader.headerName=Content-Security-Policy-Report-Only docker.io/saidsef/alpine-jenkins-dockerfile:latest
 ```
 
+### Reverse proxy check
+
+The startup script disables the reverse proxy check under **Manage Jenkins**. Jenkins serves the System page at both `/manage/configure` and `/configure`, and the check only passes from a page under `/manage`, so opening `/configure` shows a broken proxy warning even when the proxy forwards every request correctly. The [reverse proxy troubleshooting guide](https://www.jenkins.io/doc/book/system-administration/reverse-proxy-configuration-troubleshooting/) describes how to test a proxy by hand.
+
 ### Links
 
 - [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)

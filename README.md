@@ -85,6 +85,14 @@ The [OpenTelemetry](https://plugins.jenkins.io/opentelemetry/) plugin sends buil
 docker run -p 8080:8080 -e OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317 docker.io/saidsef/alpine-jenkins-dockerfile:latest
 ```
 
+### Content Security Policy
+
+The startup script turns on [Content Security Policy](https://www.jenkins.io/doc/book/security/csp/) enforcement on every start. Jenkins sends a `Content-Security-Policy` header, and browsers block any script or style that the policy does not allow. A plugin page that stops working under the policy works again once Jenkins sends the header as report-only:
+
+```bash
+docker run -p 8080:8080 -e JENKINS_JAVA_OPTS=-Djenkins.security.csp.CspHeader.headerName=Content-Security-Policy-Report-Only docker.io/saidsef/alpine-jenkins-dockerfile:latest
+```
+
 ### Links
 
 - [Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)

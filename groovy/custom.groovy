@@ -3,6 +3,7 @@
 // https://go.cloudbees.com/docs/cloudbees-documentation/admin-instance/setup/
 // move to new format: https://plugins.jenkins.io/role-strategy/
 
+import hudson.diagnosis.ReverseProxySetupMonitor
 import hudson.extension.*
 import hudson.model.*
 import hudson.plugins.audit_trail.AuditTrailPlugin
@@ -13,6 +14,7 @@ import io.jenkins.plugins.darktheme.DarkThemeSystemManagerFactory
 import io.jenkins.plugins.opentelemetry.JenkinsOpenTelemetryPluginConfiguration
 import io.jenkins.plugins.thememanager.ThemeManagerPageDecorator
 import jenkins.model.*
+import jenkins.security.csp.impl.CspConfiguration
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
 import org.jenkinsci.plugins.matrixauth.PermissionEntry
 
@@ -117,6 +119,24 @@ try {
   }
 } catch (Exception e) {
   println "--> opentelemetry endpoint failed"
+  println "${e}"
+}
+
+try {
+  // Jenkins only reports policy violations until enforcement is on, and it does not block anything
+  GlobalConfiguration.all().get(CspConfiguration).setEnforce(true)
+  println "--> content security policy enforced"
+} catch (Exception e) {
+  println "--> content security policy enforcement failed"
+  println "${e}"
+}
+
+try {
+  // Jenkins also serves the System page at /configure, and this check only passes from /manage. See #171.
+  AdministrativeMonitor.all().get(ReverseProxySetupMonitor).disable(true)
+  println "--> reverse proxy check disabled"
+} catch (Exception e) {
+  println "--> reverse proxy check failed to disable"
   println "${e}"
 }
 

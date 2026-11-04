@@ -10,7 +10,9 @@ import hudson.plugins.audit_trail.AuditTrailPlugin
 import hudson.plugins.audit_trail.ConsoleAuditLogger
 import hudson.security.*
 import hudson.security.csrf.DefaultCrumbIssuer
+import io.jenkins.plugins.darktheme.DarkThemeSystemManagerFactory
 import io.jenkins.plugins.opentelemetry.JenkinsOpenTelemetryPluginConfiguration
+import io.jenkins.plugins.thememanager.ThemeManagerPageDecorator
 import jenkins.model.*
 import jenkins.security.csp.impl.CspConfiguration
 import org.jenkinsci.plugins.matrixauth.AuthorizationType
@@ -76,6 +78,18 @@ try {
   instance.reload()
 } catch (Exception e) {
   println "--> Global Matrix Auth failed"
+  println "${e}"
+}
+
+try {
+  ThemeManagerPageDecorator theme = ThemeManagerPageDecorator.get()
+  theme.setTheme(new DarkThemeSystemManagerFactory())
+  theme.setDisableUserThemes(false)
+  theme.save()
+
+  println "--> jenkins theme set to dark (system)"
+} catch (Exception e) {
+  println "--> styling failed"
   println "${e}"
 }
 
